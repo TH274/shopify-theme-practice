@@ -1,0 +1,500 @@
+{% schema %}
+{
+  "name": "Customer Reviews",
+  "tag": "section",
+  "class": "section-customer-reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "What Our Customers Are Saying"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 10,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f9f9f9"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "customer_name",
+          "label": "Customer Name",
+          "default": "Happy Customer"
+        },
+        {
+          "type": "textarea",
+          "id": "testimonial_text",
+          "label": "Testimonial",
+          "default": "I love the Bamboozld socks! They're comfortable, durable, and the designs are fantastic."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating (1-5)",
+          "default": 5
+        },
+        {
+          "type": "image_picker",
+          "id": "customer_image",
+          "label": "Customer Image (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "product_purchased",
+          "label": "Product Purchased",
+          "default": "Bamboo Socks"
+        },
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Review Date",
+          "default": "March 15, 2023"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Customer Reviews",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="customer-reviews-section" 
+  style="background-color: {{ section.settings.background_color }}; padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="customer-reviews-container">
+    
+    {% if section.settings.title != blank %}
+      <div class="section-header">
+        <h2 class="section-title">{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+    
+    <div class="reviews-slider">
+      <div class="slider-controls">
+        <button class="slider-arrow slider-prev" aria-label="Previous review">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 19L8 12L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        
+        <div class="slider-dots">
+          {% for block in section.blocks %}
+            {% if block.type == 'testimonial' %}
+              <button class="slider-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to review {{ forloop.index }}"></button>
+            {% endif %}
+          {% endfor %}
+        </div>
+        
+        <button class="slider-arrow slider-next" aria-label="Next review">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 5L16 12L9 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="reviews-track">
+        {% for block in section.blocks %}
+          {% if block.type == 'testimonial' %}
+            <div class="review-card {% if forloop.first %}active{% endif %}" {{ block.shopify_attributes }} data-index="{{ forloop.index0 }}">
+              <div class="review-card-inner">
+                <div class="review-header">
+                  <div class="customer-info">
+                    <div class="customer-image">
+                      {% if block.settings.customer_image %}
+                        <img src="{{ block.settings.customer_image | img_url: '80x80', crop: 'center' }}" alt="{{ block.settings.customer_name }}" loading="lazy">
+                      {% else %}
+                        <div class="customer-initial">{{ block.settings.customer_name | slice: 0 }}</div>
+                      {% endif %}
+                    </div>
+                    
+                    <div class="customer-details">
+                      <h3 class="customer-name">{{ block.settings.customer_name }}</h3>
+                      <p class="review-meta">
+                        <span class="product-purchased">{{ block.settings.product_purchased }}</span>
+                        <span class="review-date">{{ block.settings.date }}</span>
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div class="review-rating">
+                    {% assign rating = block.settings.rating %}
+                    {% for i in (1..5) %}
+                      <span class="star {% if i <= rating %}filled{% endif %}">★</span>
+                    {% endfor %}
+                  </div>
+                </div>
+                
+                <div class="review-content">
+                  <div class="review-quote">
+                    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.5 17.5H9C8.17157 17.5 7.5 16.8284 7.5 16V11C7.5 10.1716 8.17157 9.5 9 9.5H14C14.8284 9.5 15.5 10.1716 15.5 11V24C15.5 24.8284 14.8284 25.5 14 25.5H9C8.17157 25.5 7.5 24.8284 7.5 24V23" stroke="#CCC" stroke-width="1.5"/>
+                      <path d="M26.5 17.5H21C20.1716 17.5 19.5 16.8284 19.5 16V11C19.5 10.1716 20.1716 9.5 21 9.5H26C26.8284 9.5 27.5 10.1716 27.5 11V24C27.5 24.8284 26.8284 25.5 26 25.5H21C20.1716 25.5 19.5 24.8284 19.5 24V23" stroke="#CCC" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                  
+                  <p class="review-text">{{ block.settings.testimonial_text }}</p>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .customer-reviews-section {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .customer-reviews-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .reviews-slider {
+    position: relative;
+    padding: 20px 0;
+  }
+  
+  .slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .slider-arrow {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+    transition: color 0.3s ease;
+  }
+  
+  .slider-arrow:hover {
+    color: #333;
+  }
+  
+  .slider-dots {
+    display: flex;
+    gap: 8px;
+    margin: 0 20px;
+  }
+  
+  .slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .slider-dot.active {
+    background-color: #333;
+    transform: scale(1.3);
+  }
+  
+  .reviews-track {
+    position: relative;
+    height: 300px;
+  }
+  
+  .review-card {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  
+  .review-card.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  .review-card-inner {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .customer-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .customer-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .customer-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .customer-initial {
+    font-size: 24px;
+    font-weight: 600;
+    color: #666;
+  }
+  
+  .customer-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .customer-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 5px;
+    color: #333;
+  }
+  
+  .review-meta {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+  
+  .product-purchased::after {
+    content: '•';
+    margin: 0 5px;
+  }
+  
+  .review-rating {
+    font-size: 20px;
+    color: #ccc;
+  }
+  
+  .star.filled {
+    color: #FFD700;
+  }
+  
+  .review-content {
+    position: relative;
+    padding-left: 40px;
+  }
+  
+  .review-quote {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+  }
+  
+  .review-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+  }
+  
+  @media screen and (max-width: 767px) {
+    .review-header {
+      flex-direction: column;
+    }
+    
+    .review-rating {
+      margin-top: 15px;
+    }
+    
+    .review-card-inner {
+      padding: 20px;
+    }
+    
+    .reviews-track {
+      height: 350px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .section-title {
+      font-size: 28px;
+    }
+    
+    .customer-image {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .customer-name {
+      font-size: 16px;
+    }
+    
+    .review-content {
+      padding-left: 30px;
+    }
+    
+    .review-quote svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .reviews-track {
+      height: 380px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const track = document.querySelector('.reviews-track');
+    const dots = document.querySelectorAll('.slider-dot');
+    const cards = document.querySelectorAll('.review-card');
+    const prevBtn = document.querySelector('.slider-prev');
+    const nextBtn = document.querySelector('.slider-next');
+    
+    if (!track || cards.length === 0) return;
+    
+    let currentIndex = 0;
+    const cardCount = cards.length;
+    
+    function showCard(index) {
+      // Hide all cards and dots
+      cards.forEach(card => card.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      // Show selected card and dot
+      cards[index].classList.add('active');
+      dots[index].classList.add('active');
+      
+      currentIndex = index;
+    }
+    
+    // Click handlers for dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showCard(index));
+    });
+    
+    // Previous and next button handlers
+    prevBtn.addEventListener('click', () => {
+      let newIndex = currentIndex - 1;
+      if (newIndex < 0) newIndex = cardCount - 1;
+      showCard(newIndex);
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      let newIndex = currentIndex + 1;
+      if (newIndex >= cardCount) newIndex = 0;
+      showCard(newIndex);
+    });
+    
+    // Auto-scroll
+    let intervalId;
+    
+    function startAutoScroll() {
+      intervalId = setInterval(() => {
+        let newIndex = currentIndex + 1;
+        if (newIndex >= cardCount) newIndex = 0;
+        showCard(newIndex);
+      }, 5000);
+    }
+    
+    function stopAutoScroll() {
+      clearInterval(intervalId);
+    }
+    
+    // Start auto-scroll
+    startAutoScroll();
+    
+    // Pause auto-scroll on hover
+    track.addEventListener('mouseenter', stopAutoScroll);
+    track.addEventListener('mouseleave', startAutoScroll);
+    
+    // Pause auto-scroll when buttons are clicked
+    prevBtn.addEventListener('click', () => {
+      stopAutoScroll();
+      setTimeout(startAutoScroll, 10000);
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      stopAutoScroll();
+      setTimeout(startAutoScroll, 10000);
+    });
+  });
+</script>
