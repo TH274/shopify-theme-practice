@@ -1,0 +1,302 @@
+{% schema %}
+{
+  "name": "Most Popular",
+  "tag": "section",
+  "class": "section-most-popular",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "MOST POPULAR"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 8,
+      "label": "Products to show"
+    },
+    {
+      "type": "select",
+      "id": "grid_columns_desktop",
+      "label": "Columns on desktop",
+      "options": [
+        {
+          "value": "2",
+          "label": "2 columns"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        },
+        {
+          "value": "4",
+          "label": "4 columns"
+        }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second image on hover",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendor",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Most Popular",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="most-popular-section">
+  <div class="most-popular-container">
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+    
+    <div class="products-grid" style="--grid-columns: {{ section.settings.grid_columns_desktop }};">
+      {% if section.settings.collection != blank %}
+        {% assign collection = collections[section.settings.collection] %}
+      {% else %}
+        {% assign collection = collections.featured-collection %}
+      {% endif %}
+      
+      {% for product in collection.products limit: section.settings.products_to_show %}
+        <div class="product-card">
+          <div class="product-card-inner">
+            <div class="product-image-wrapper">
+              <a href="{{ product.url }}" class="product-link">
+                {% if product.featured_image %}
+                  <img 
+                    src="{{ product.featured_image | img_url: '500x' }}" 
+                    alt="{{ product.title | escape }}"
+                    class="product-image"
+                    loading="lazy"
+                  >
+                  
+                  {% if section.settings.show_secondary_image and product.images[1] %}
+                    <img 
+                      src="{{ product.images[1] | img_url: '500x' }}" 
+                      alt="{{ product.title | escape }}"
+                      class="product-image product-image-hover"
+                      loading="lazy"
+                    >
+                  {% endif %}
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-image' }}
+                {% endif %}
+              </a>
+              
+              {% if product.compare_at_price > product.price %}
+                <div class="sale-badge">
+                  <span>On Sale</span>
+                </div>
+              {% endif %}
+              
+              {% if product.available == false %}
+                <div class="sold-out-badge">
+                  <span>Sold out</span>
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="product-info">
+              {% if section.settings.show_vendor %}
+                <div class="product-vendor">{{ product.vendor }}</div>
+              {% endif %}
+              
+              <h3 class="product-title">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h3>
+              
+              <div class="product-price">
+                {% if product.compare_at_price > product.price %}
+                  <span class="regular-price">{{ product.price | money }}</span>
+                  <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                {% else %}
+                  <span class="regular-price">{{ product.price | money }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .most-popular-section {
+    padding: 60px 0;
+    margin: 0 auto;
+  }
+  
+  .most-popular-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    color: #333;
+  }
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns, 4), 1fr);
+    gap: 20px;
+  }
+  
+  .product-card {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .product-card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .product-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 125%; /* 4:5 aspect ratio */
+    margin-bottom: 15px;
+  }
+  
+  .product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+  
+  .product-image-hover {
+    opacity: 0;
+  }
+  
+  .product-link:hover .product-image-hover {
+    opacity: 1;
+  }
+  
+  .product-link:hover .product-image:not(.product-image-hover) {
+    opacity: 0;
+  }
+  
+  .sale-badge, 
+  .sold-out-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  
+  .sale-badge {
+    background-color: #e53935;
+    color: white;
+  }
+  
+  .sold-out-badge {
+    background-color: #9e9e9e;
+    color: white;
+  }
+  
+  .product-info {
+    padding: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-vendor {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+  }
+  
+  .product-title {
+    font-size: 16px;
+    margin: 0 0 8px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  
+  .product-title a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .product-title a:hover {
+    color: #555;
+  }
+  
+  .product-price {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: auto;
+  }
+  
+  .regular-price {
+    font-weight: 600;
+    font-size: 15px;
+    color: #333;
+  }
+  
+  .compare-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+  }
+  
+  @media screen and (max-width: 989px) {
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 749px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .section-title {
+      font-size: 28px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .section-title {
+      font-size: 24px;
+    }
+  }
+</style> 

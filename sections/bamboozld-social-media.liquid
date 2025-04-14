@@ -1,0 +1,260 @@
+{% schema %}
+{
+  "name": "Social Media",
+  "tag": "section",
+  "class": "section-social-media",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "LET'S GET SOCIAL! FOLLOW US"
+    },
+    {
+      "type": "text",
+      "id": "instagram_username",
+      "label": "Instagram Username",
+      "default": "@bamboozld"
+    },
+    {
+      "type": "url",
+      "id": "instagram_link",
+      "label": "Instagram Link"
+    },
+    {
+      "type": "url",
+      "id": "facebook_link",
+      "label": "Facebook Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Social Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Social Media",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="social-media-section">
+  <div class="social-media-container">
+    {% if section.settings.heading != blank %}
+      <div class="section-header">
+        <h2 class="section-heading">{{ section.settings.heading }}</h2>
+        
+        {% if section.settings.instagram_username != blank %}
+          <div class="social-username">
+            <a href="{{ section.settings.instagram_link }}" target="_blank" rel="noopener" class="social-link">
+              {{ section.settings.instagram_username }}
+            </a>
+          </div>
+        {% endif %}
+        
+        <div class="social-links">
+          {% if section.settings.instagram_link != blank %}
+            <a href="{{ section.settings.instagram_link }}" target="_blank" rel="noopener" class="social-icon-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="currentColor"/>
+              </svg>
+            </a>
+          {% endif %}
+          
+          {% if section.settings.facebook_link != blank %}
+            <a href="{{ section.settings.facebook_link }}" target="_blank" rel="noopener" class="social-icon-link">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="currentColor"/>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+    
+    <div class="social-grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'image' %}
+          <div class="social-item" {{ block.shopify_attributes }}>
+            <a href="{{ block.settings.link }}" target="_blank" rel="noopener" class="social-image-link">
+              <div class="social-image-container">
+                {% if block.settings.image %}
+                  <img 
+                    src="{{ block.settings.image | img_url: '500x' }}" 
+                    alt="Social Media Image"
+                    loading="lazy"
+                    class="social-image"
+                  >
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg social-image' }}
+                {% endif %}
+                
+                <div class="social-overlay">
+                  <div class="social-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" fill="white"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .social-media-section {
+    padding: 60px 0;
+    background-color: #fff;
+  }
+  
+  .social-media-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .section-heading {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .social-username {
+    margin-bottom: 15px;
+  }
+  
+  .social-link {
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .social-link:hover {
+    color: #888;
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .social-icon-link {
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icon-link:hover {
+    color: #888;
+  }
+  
+  .social-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+  
+  .social-item {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .social-image-container {
+    position: relative;
+    padding-bottom: 100%; /* 1:1 aspect ratio */
+    overflow: hidden;
+  }
+  
+  .social-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .social-image-link:hover .social-image {
+    transform: scale(1.05);
+  }
+  
+  .social-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .social-image-link:hover .social-overlay {
+    opacity: 1;
+  }
+  
+  @media screen and (max-width: 989px) {
+    .social-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 749px) {
+    .social-media-section {
+      padding: 40px 0;
+    }
+    
+    .section-heading {
+      font-size: 24px;
+    }
+    
+    .social-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style> 

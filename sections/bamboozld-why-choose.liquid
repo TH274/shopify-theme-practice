@@ -1,0 +1,198 @@
+{% schema %}
+{
+  "name": "Why Choose Bamboo",
+  "tag": "section",
+  "class": "section-why-choose",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Why Choose Bamboo?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Feature"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description",
+          "default": "Describe the feature here."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn more"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Feature Icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Bamboo",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Breathable",
+            "description": "Bamboo has amazing characteristicts of being snugly and warm in winter and cool and comfortable in summer."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Sustainable",
+            "description": "Bamboo has a natural pesticide which means no chemicals are used in growing or harvesting, providing a cleaner environment for the farm workers."
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Antibacterial",
+            "description": "Bamboo fibre maintains some of the natural antibacterial properties of the plant and has been proven to assist in the control of odour."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="why-choose-section">
+  <div class="why-choose-container">
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+    
+    <div class="features-container">
+      {% for block in section.blocks %}
+        {% if block.type == 'feature' %}
+          <div class="feature-card" {{ block.shopify_attributes }}>
+            {% if block.settings.icon %}
+              <div class="feature-icon">
+                <img src="{{ block.settings.icon | img_url: '100x' }}" alt="{{ block.settings.title }}" loading="lazy">
+              </div>
+            {% endif %}
+            <h3 class="feature-title">{{ block.settings.title }}</h3>
+            <p class="feature-description">{{ block.settings.description }}</p>
+            
+            {% if block.settings.link != blank and block.settings.button_text != blank %}
+              <a href="{{ block.settings.link }}" class="feature-link">{{ block.settings.button_text }}</a>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .why-choose-section {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+  }
+  
+  .why-choose-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+  }
+  
+  .features-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  .feature-card {
+    flex: 1 1 calc(33.333% - 30px);
+    min-width: 250px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature-icon {
+    margin-bottom: 20px;
+  }
+  
+  .feature-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+  
+  .feature-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .feature-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .feature-link {
+    display: inline-block;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+    padding-bottom: 2px;
+    transition: color 0.3s ease;
+  }
+  
+  .feature-link:hover {
+    color: #888;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .features-container {
+      flex-direction: column;
+    }
+    
+    .feature-card {
+      flex: 1 1 100%;
+    }
+  }
+</style> 

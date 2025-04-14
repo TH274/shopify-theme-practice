@@ -1,0 +1,110 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "collection": "all",
+        "products_to_show": 8,
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "bamboozld_hero_dD4rgK": {
+      "type": "bamboozld-hero",
+      "settings": {
+        "image": "shopify://shop_images/theme_cover_image.jpg",
+        "image_position": "center",
+        "hero_layout": "fixed_width",
+        "button_link": "",
+        "button_position": "center-center",
+        "button_label": "Shop now"
+      }
+    },
+    "bamboozld_featured_categories_MN8YAd": {
+      "type": "bamboozld-featured-categories",
+      "blocks": {
+        "category_AWG9Wj": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/feet-pose-white-sport-sock.jpg",
+            "title": "MEN'S SOCKS",
+            "link": "shopify://collections/automated-collection",
+            "show_overlay_text": true
+          }
+        },
+        "category_m9rxWd": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/legs-crossed-hot-dog-socks.jpg",
+            "title": "WOMAN'S SOCKS",
+            "link": "shopify://collections/all",
+            "show_overlay_text": true
+          }
+        },
+        "category_LKTWU4": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/simple-beige-mens-shirt.jpg",
+            "title": "MEN'S SLEEPWEARS",
+            "link": "shopify://collections/all",
+            "show_overlay_text": true
+          }
+        },
+        "category_CMNmtJ": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/person-sits-cross-legged-in-summer-fashion.jpg",
+            "title": "WOMEN'S SLEEPWEAR",
+            "link": "",
+            "show_overlay_text": true
+          }
+        }
+      },
+      "block_order": [
+        "category_AWG9Wj",
+        "category_m9rxWd",
+        "category_LKTWU4",
+        "category_CMNmtJ"
+      ],
+      "settings": {
+        "title": "",
+        "layout": "grid",
+        "columns_desktop": "2"
+      }
+    }
+  },
+  "order": [
+    "featured_collection",
+    "bamboozld_hero_dD4rgK",
+    "bamboozld_featured_categories_MN8YAd"
+  ]
+}

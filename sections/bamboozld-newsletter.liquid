@@ -1,0 +1,199 @@
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "class": "section-newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get an immediate 20% discount!"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Subscribe and stay up to date with our latest news and products. *Offer excludes already discounted items and Bundles"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#333333"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="newsletter-section" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+  <div class="newsletter-container">
+    {% if section.settings.heading != blank %}
+      <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+    
+    {% if section.settings.subheading != blank %}
+      <div class="newsletter-subheading">{{ section.settings.subheading }}</div>
+    {% endif %}
+    
+    {%- form 'customer', id: 'newsletter-form', class: 'newsletter-form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="newsletter-field-wrapper">
+        <div class="newsletter-field">
+          <input
+            id="NewsletterEmail"
+            type="email"
+            name="contact[email]"
+            class="newsletter-input"
+            value="{{ form.email }}"
+            aria-required="true"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            placeholder="Email address"
+            required
+          >
+          <button type="submit" class="newsletter-button" name="commit">
+            {{ section.settings.button_text }}
+          </button>
+        </div>
+      </div>
+      
+      {%- if form.errors -%}
+        <div class="newsletter-error">
+          {%- for error in form.errors -%}
+            <small>{{ error }}</small>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      
+      {%- if form.posted_successfully? -%}
+        <div class="newsletter-success">
+          <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
+        </div>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>
+
+<style>
+  .newsletter-section {
+    padding: 60px 0;
+    text-align: center;
+  }
+  
+  .newsletter-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .newsletter-heading {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 15px;
+  }
+  
+  .newsletter-subheading {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+  }
+  
+  .newsletter-form {
+    width: 100%;
+  }
+  
+  .newsletter-field-wrapper {
+    margin-bottom: 15px;
+  }
+  
+  .newsletter-field {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: white;
+  }
+  
+  .newsletter-input {
+    flex: 1;
+    border: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    outline: none;
+    color: #333;
+  }
+  
+  .newsletter-input::placeholder {
+    color: #999;
+  }
+  
+  .newsletter-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .newsletter-button:hover {
+    background-color: #555;
+  }
+  
+  .newsletter-error {
+    color: #d9534f;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .newsletter-success {
+    color: #5cb85c;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .newsletter-section {
+      padding: 40px 0;
+    }
+    
+    .newsletter-heading {
+      font-size: 24px;
+    }
+    
+    .newsletter-field {
+      flex-direction: column;
+    }
+    
+    .newsletter-input {
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .newsletter-button {
+      width: 100%;
+      padding: 12px 15px;
+    }
+  }
+</style> 

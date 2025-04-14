@@ -1,0 +1,284 @@
+<div class="hero-banner">
+  <div class="hero-inner {{ section.settings.hero_layout }}">
+    <div class="hero-image">
+      {% if section.settings.image %}
+        <img
+          src="{{ section.settings.image |  image_url: width: 1600 }}"
+          alt="Hero Image"
+          loading="lazy" />
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+    <div class="hero-content {{ section.settings.button_position }} ">
+      {% if section.settings.button_link %}
+        <div class="button-container">
+          <a href="{{ section.settings.button_link }}" class="hero-button">
+            {{ section.settings.button_label }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-banner {
+    padding: 0;
+    background-color: #ffffff;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .hero-inner.full_width {
+    width: 100vw;
+  }
+
+  .hero-inner.fixed_width {
+    width: 1250px;
+    margin: 0 auto;
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 42.85%; /* 16:9 aspect ratio */
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ section.settings.image_position }};
+    display: block;
+    will-change: transform;
+  }
+
+  .hero-content {
+    position: absolute;
+    z-index: 2;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    max-width: 90%;
+  }
+
+  .hero-content.top-left {
+    top: 10%;
+    left: 5%;
+    transform: none;
+    text-align: left;
+  }
+  .hero-content.top-center {
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .hero-content.top-right {
+    top: 10%;
+    right: 5%;
+    transform: none;
+    text-align: right;
+  }
+
+  .hero-content.center-left {
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    text-align: left;
+  }
+  .hero-content.center-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .hero-content.center-right {
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    text-align: right;
+  }
+
+  .hero-content.bottom-left {
+    bottom: 10%;
+    left: 5%;
+    transform: none;
+    text-align: left;
+  }
+  .hero-content.bottom-center {
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .hero-content.bottom-right {
+    bottom: 10%;
+    right: 5%;
+    transform: none;
+    text-align: right;
+  }
+  
+  .button-container {
+    margin-top: 25px;
+  }
+  
+  .hero-button {
+    background-color: white;
+    padding: clamp(8px, 1vw, 10px) clamp(15px, 2vw, 25px);
+    color: #333;
+    word-spacing: 0.1em;
+    font-weight: 600;
+    font-size: clamp(14px, 1.5vw, 20px);
+    text-transform: capitalize;
+    display: inline-block;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  
+  .hero-button:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  @media screen and (max-width: 989px) {
+    .hero-image {
+      padding-bottom: 50%;
+    }
+    
+    .hero-button {
+      padding: 8px 20px;
+      font-size: 18px;
+    }
+  }
+  
+  @media screen and (max-width: 749px) {
+    .hero-inner {
+      flex-direction: column;
+    }
+    
+    .hero-image {
+      padding-bottom: 66.67%;
+    }
+
+    .hero-content {
+      max-width: 85%;
+    }
+    
+    .hero-button {
+      padding: 8px 15px;
+      font-size: 16px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "hero banner",
+    "tag": "section",
+    "class": "hero-banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Choose an image"
+      },
+      {
+        "type": "select",
+        "id": "image_position",
+        "label": "image position",
+        "options": [
+          {
+            "label": "Top",
+            "value": "top"
+          }, {
+            "label": "Center",
+            "value": "center"
+          }, {
+            "label": "Bottom",
+            "value": "bottom"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "hero_layout",
+        "label": "Layout",
+        "default": "full_width",
+        "options": [
+          {
+            "label": "Full width",
+            "value": "full_width"
+          }, {
+            "label": "Fixed Width",
+            "value": "fixed_width"
+          }
+        ]
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      }, {
+        "type": "select",
+        "id": "button_position",
+        "label": "Button Position",
+        "default": "center-center",
+        "options": [
+          {
+            "label": "Top Left",
+            "value": "top-left"
+          },
+          {
+            "label": "Top Center",
+            "value": "top-center"
+          },
+          {
+            "label": "Top Right",
+            "value": "top-right"
+          },
+          {
+            "label": "Middle Left",
+            "value": "center-left"
+          }, {
+            "label": "Center",
+            "value": "center-center"
+          }, {
+            "label": "Middle Right",
+            "value": "center-right"
+          }, {
+            "label": "Bottom Left",
+            "value": "bottom-left"
+          }, {
+            "label": "Bottom Center",
+            "value": "bottom-center"
+          }, {
+            "label": "Bottom Right",
+            "value": "bottom-right"
+          }
+        ]
+      }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Label",
+        "default": "Shop now"
+      }
+    ],
+    "presets": [
+      {
+        "name": "hero banner",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

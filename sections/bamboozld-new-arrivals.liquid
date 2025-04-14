@@ -1,0 +1,333 @@
+{% schema %}
+{
+  "name": "New Arrivals",
+  "tag": "section",
+  "class": "section-new-arrivals",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "NEW ARRIVALS"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_new_label",
+      "label": "Show 'New Arrival' label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist",
+      "label": "Show wishlist icon",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "New Arrivals",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="new-arrivals-section">
+  <div class="section-header">
+    <h2 class="section-title">{{ section.settings.title }}</h2>
+  </div>
+  
+  <div class="new-arrivals-slider {% if section.settings.layout == 'grid' %}new-arrivals-grid{% endif %}">
+    <div class="slider-nav slider-prev">
+      <button class="slider-btn prev-btn" aria-label="Previous slide">
+        {% render 'icon-arrow-left' %}
+      </button>
+    </div>
+    
+    <div class="product-container">
+      {% if section.settings.collection != blank %}
+        {% assign collection = collections[section.settings.collection] %}
+      {% else %}
+        {% assign collection = collections.featured-collection %}
+      {% endif %}
+      
+      {% for product in collection.products limit: section.settings.products_to_show %}
+        <div class="product-card">
+          {% if section.settings.show_new_label %}
+            <div class="new-arrival-badge">
+              <span>NEW ARRIVAL</span>
+            </div>
+          {% endif %}
+          
+          <div class="product-image-wrapper">
+            <a href="{{ product.url }}" class="product-link">
+              <img 
+                src="{{ product.featured_image | img_url: '400x' }}" 
+                alt="{{ product.title | escape }}"
+                class="product-image"
+                loading="lazy"
+              >
+            </a>
+            
+            {% if section.settings.show_wishlist %}
+              <button class="wishlist-button" aria-label="Add to wishlist">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.03L12 21.35Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                </svg>
+              </button>
+            {% endif %}
+          </div>
+          
+          <div class="product-info">
+            <h3 class="product-title">{{ product.title }}</h3>
+            <div class="product-price">
+              {% if product.compare_at_price > product.price %}
+                <span class="regular-price">{{ product.price | money }}</span>
+                <span class="compare-price">{{ product.compare_at_price | money }}</span>
+              {% else %}
+                <span class="regular-price">{{ product.price | money }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    
+    <div class="slider-nav slider-next">
+      <button class="slider-btn next-btn" aria-label="Next slide">
+        {% render 'icon-arrow-right' %}
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .new-arrivals-section {
+    padding: 60px 0;
+    margin: 0 auto;
+    max-width: 1400px;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  
+  .new-arrivals-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .product-container {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+  }
+  
+  .new-arrivals-grid .product-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow: visible;
+  }
+  
+  .product-card {
+    position: relative;
+    flex: 0 0 calc(25% - 20px);
+    min-width: 250px;
+    padding-bottom: 20px;
+  }
+  
+  .new-arrival-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    background-color: #FF8C00;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .product-image-wrapper {
+    position: relative;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-link:hover .product-image {
+    transform: scale(1.05);
+  }
+  
+  .wishlist-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 2;
+  }
+  
+  .product-info {
+    padding: 0 10px;
+  }
+  
+  .product-title {
+    font-size: 16px;
+    margin: 0 0 8px;
+    font-weight: 500;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  .product-price {
+    display: flex;
+    gap: 10px;
+    font-size: 15px;
+  }
+  
+  .regular-price {
+    font-weight: 600;
+  }
+  
+  .compare-price {
+    text-decoration: line-through;
+    color: #999;
+  }
+  
+  .slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slider-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .new-arrivals-grid .slider-nav {
+    display: none;
+  }
+  
+  @media screen and (max-width: 990px) {
+    .new-arrivals-grid .product-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .product-card {
+      flex: 0 0 calc(33.33% - 20px);
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .new-arrivals-section {
+      padding: 40px 0;
+    }
+    
+    .section-title {
+      font-size: 28px;
+    }
+    
+    .new-arrivals-grid .product-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .product-card {
+      flex: 0 0 calc(50% - 20px);
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .section-title {
+      font-size: 24px;
+    }
+    
+    .product-card {
+      min-width: 200px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.product-container');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    if (container && prevBtn && nextBtn) {
+      const scrollAmount = container.clientWidth * 0.8;
+      
+      prevBtn.addEventListener('click', function() {
+        container.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+      
+      nextBtn.addEventListener('click', function() {
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+    }
+  });
+</script> 
