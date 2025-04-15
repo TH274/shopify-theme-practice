@@ -795,6 +795,7 @@ summary::-webkit-details-marker {
 
 .title--primary {
   margin: 4rem 0;
+  margin-top: 0 !important;
 }
 
 .title-wrapper--self-padded-tablet-down,

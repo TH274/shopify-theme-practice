@@ -111,15 +111,6 @@
     "bamboozld_ratings_KNfUQ4": {
       "type": "bamboozld-ratings",
       "blocks": {
-        "testimonial_9Gh8hw": {
-          "type": "testimonial",
-          "settings": {
-            "customer_name": "Happy Customer",
-            "testimonial_text": "Super soft and gorgeous pattern - super for an easter present",
-            "rating": 5,
-            "verified_by_shop": true
-          }
-        },
         "testimonial_Kne7HV": {
           "type": "testimonial",
           "settings": {
@@ -149,7 +140,6 @@
         }
       },
       "block_order": [
-        "testimonial_9Gh8hw",
         "testimonial_Kne7HV",
         "testimonial_dRRmEP",
         "testimonial_kF7QNC"
