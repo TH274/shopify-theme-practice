@@ -108,6 +108,60 @@
         "show_wishlist": true
       }
     },
+    "bamboozld_ratings_KNfUQ4": {
+      "type": "bamboozld-ratings",
+      "blocks": {
+        "testimonial_9Gh8hw": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Happy Customer",
+            "testimonial_text": "Super soft and gorgeous pattern - super for an easter present",
+            "rating": 5,
+            "verified_by_shop": true
+          }
+        },
+        "testimonial_Kne7HV": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Happy Customer",
+            "testimonial_text": "Super soft and gorgeous pattern - super for an easter present",
+            "rating": 5,
+            "verified_by_shop": true
+          }
+        },
+        "testimonial_dRRmEP": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Happy Customer",
+            "testimonial_text": "Super soft and gorgeous pattern - super for an easter present",
+            "rating": 5,
+            "verified_by_shop": true
+          }
+        },
+        "testimonial_kF7QNC": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Happy Customer",
+            "testimonial_text": "Super soft and gorgeous pattern - super for an easter present",
+            "rating": 5,
+            "verified_by_shop": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_9Gh8hw",
+        "testimonial_Kne7HV",
+        "testimonial_dRRmEP",
+        "testimonial_kF7QNC"
+      ],
+      "settings": {
+        "title": "WHAT OUR CUSTOMERS ARE SAYING",
+        "review_count": "1268 Reviews",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "background_color": "#ffffff"
+      }
+    },
     "bamboozld_hero_7w7xXW": {
       "type": "bamboozld-hero",
       "settings": {
@@ -168,7 +222,7 @@
       ],
       "settings": {
         "title": "Why Choose Bamboo?",
-        "image": "shopify://shop_images/pixel-art-pixelated-nature-landscape-pixels-hd-wallpaper-preview.jpg",
+        "image": "shopify://shop_images/red-and-blue-shoreline-iphone-screen.jpg",
         "text_color": "text-white"
       }
     },
@@ -186,6 +240,7 @@
     "bamboozld_hero_dD4rgK",
     "bamboozld_featured_categories_MN8YAd",
     "bamboozld_new_arrivals_TzPjiT",
+    "bamboozld_ratings_KNfUQ4",
     "bamboozld_hero_7w7xXW",
     "bamboozld_new_arrivals_F9iM99",
     "bamboozld_why_choose_dWBcyU",
