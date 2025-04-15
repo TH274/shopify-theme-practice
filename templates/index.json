@@ -38,7 +38,7 @@
           "settings": {
             "image": "shopify://shop_images/legs-crossed-hot-dog-socks.jpg",
             "link": "shopify://collections/all",
-            "button_label": "Shop Now",
+            "button_label": "WOMEN'S SOCK",
             "button_position": "bottom-right",
             "show_overlay_text": true
           }
@@ -48,7 +48,7 @@
           "settings": {
             "image": "shopify://shop_images/simple-beige-mens-shirt.jpg",
             "link": "shopify://collections/all",
-            "button_label": "Shop Now",
+            "button_label": "MEN'S SLEEPWEAR",
             "button_position": "bottom-right",
             "show_overlay_text": true
           }
@@ -159,7 +159,7 @@
         "image_position": "bottom",
         "hero_layout": "full_width",
         "button_link": "shopify://collections",
-        "button_position": "bottom-right",
+        "button_position": "center-center",
         "button_label": "SHOP THE LOOKS"
       }
     },
