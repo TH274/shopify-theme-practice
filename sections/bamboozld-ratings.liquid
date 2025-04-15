@@ -446,12 +446,12 @@
       currentIndex = index;
     }
     
-    // Click handlers for dot navigation
+    // Click handlers
     dots.forEach((dot, index) => {
       dot.addEventListener('click', () => showCard(index));
     });
     
-    // Previous and next button handlers
+    // Previous and next button
     prevBtn.addEventListener('click', () => {
       let newIndex = currentIndex - 1;
       if (newIndex < 0) newIndex = cardCount - 1;
@@ -479,7 +479,6 @@
       clearInterval(intervalId);
     }
     
-    // Start auto-scroll
     startAutoScroll();
     
     // Pause auto-scroll on hover
