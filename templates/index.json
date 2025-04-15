@@ -138,7 +138,7 @@
           "settings": {
             "title": "Breathable",
             "description": "Bamboo has amazing characteristicts of being snugly and warm in winter and cool and comfortable in summer.",
-            "link": "",
+            "link": "shopify://blogs/news/kris-kringle-gift-they-loved",
             "button_text": "Learn more"
           }
         },
@@ -147,7 +147,7 @@
           "settings": {
             "title": "Sustainable",
             "description": "Bamboo has a natural pesticide which means no chemicals are used in growing or harvesting, providing a cleaner environment for the farm workers.",
-            "link": "",
+            "link": "shopify://collections",
             "button_text": "Learn more"
           }
         },
@@ -156,7 +156,7 @@
           "settings": {
             "title": "Antibacterial",
             "description": "Bamboo fibre maintains some of the natural antibacterial properties of the plant and has been proven to assist in the control of odour.",
-            "link": "",
+            "link": "shopify://blogs/news",
             "button_text": "Learn more"
           }
         }
@@ -167,7 +167,9 @@
         "feature_HrFGxk"
       ],
       "settings": {
-        "title": "Why Choose Bamboo?"
+        "title": "Why Choose Bamboo?",
+        "image": "shopify://shop_images/pixel-art-pixelated-nature-landscape-pixels-hd-wallpaper-preview.jpg",
+        "text_color": "text-white"
       }
     },
     "bamboozld_social_media_jQzEY7": {
