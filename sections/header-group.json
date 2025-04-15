@@ -49,7 +49,7 @@
         "enable_country_selector": true,
         "enable_language_selector": true,
         "enable_customer_avatar": true,
-        "margin_bottom": 0,
+        "margin_bottom": 16,
         "padding_top": 8,
         "padding_bottom": 8
       }

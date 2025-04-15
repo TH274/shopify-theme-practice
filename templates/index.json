@@ -9,44 +9,15 @@
  */
 {
   "sections": {
-    "featured_collection": {
-      "type": "featured-collection",
-      "disabled": true,
-      "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": false,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
-    },
     "bamboozld_hero_dD4rgK": {
       "type": "bamboozld-hero",
       "settings": {
         "image": "shopify://shop_images/theme_cover_image.jpg",
         "image_position": "center",
         "hero_layout": "fixed_width",
-        "button_link": "",
-        "button_position": "center-center",
-        "button_label": "Shop now"
+        "button_link": "shopify://collections",
+        "button_position": "bottom-right",
+        "button_label": "WINTER COLLECTION"
       }
     },
     "bamboozld_featured_categories_MN8YAd": {
@@ -56,8 +27,9 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/feet-pose-white-sport-sock.jpg",
-            "title": "MEN'S SOCKS",
             "link": "shopify://collections/automated-collection",
+            "button_label": "MEN'S SOCK",
+            "button_position": "bottom-right",
             "show_overlay_text": true
           }
         },
@@ -65,8 +37,9 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/legs-crossed-hot-dog-socks.jpg",
-            "title": "WOMAN'S SOCKS",
             "link": "shopify://collections/all",
+            "button_label": "Shop Now",
+            "button_position": "bottom-right",
             "show_overlay_text": true
           }
         },
@@ -74,8 +47,9 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/simple-beige-mens-shirt.jpg",
-            "title": "MEN'S SLEEPWEARS",
             "link": "shopify://collections/all",
+            "button_label": "Shop Now",
+            "button_position": "bottom-right",
             "show_overlay_text": true
           }
         },
@@ -83,8 +57,29 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/person-sits-cross-legged-in-summer-fashion.jpg",
-            "title": "WOMEN'S SLEEPWEAR",
-            "link": "",
+            "link": "shopify://collections",
+            "button_label": "WOMAN'S SLEEPWEAR",
+            "button_position": "bottom-right",
+            "show_overlay_text": true
+          }
+        },
+        "category_x3jBAz": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/business-man-checks-mobile.jpg",
+            "link": "shopify://collections",
+            "button_label": "MEN'S JACKET",
+            "button_position": "bottom-right",
+            "show_overlay_text": true
+          }
+        },
+        "category_WKPQ4X": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/urban-fashion.jpg",
+            "link": "shopify://collections",
+            "button_label": "WOMEN'S JACKET",
+            "button_position": "bottom-right",
             "show_overlay_text": true
           }
         }
@@ -93,18 +88,105 @@
         "category_AWG9Wj",
         "category_m9rxWd",
         "category_LKTWU4",
-        "category_CMNmtJ"
+        "category_CMNmtJ",
+        "category_x3jBAz",
+        "category_WKPQ4X"
       ],
       "settings": {
-        "title": "",
         "layout": "grid",
         "columns_desktop": "2"
+      }
+    },
+    "bamboozld_new_arrivals_TzPjiT": {
+      "type": "bamboozld-new-arrivals",
+      "settings": {
+        "title": "NEW ARRIVALS",
+        "collection": "automated-collection",
+        "products_to_show": 12,
+        "layout": "slider",
+        "show_new_label": true,
+        "show_wishlist": true
+      }
+    },
+    "bamboozld_hero_7w7xXW": {
+      "type": "bamboozld-hero",
+      "settings": {
+        "image": "shopify://shop_images/boots-on-blue.jpg",
+        "image_position": "bottom",
+        "hero_layout": "full_width",
+        "button_link": "shopify://collections",
+        "button_position": "bottom-right",
+        "button_label": "SHOP THE LOOKS"
+      }
+    },
+    "bamboozld_new_arrivals_F9iM99": {
+      "type": "bamboozld-new-arrivals",
+      "settings": {
+        "title": "MOST POPULAR",
+        "collection": "hydrogen",
+        "products_to_show": 12,
+        "layout": "slider",
+        "show_new_label": false,
+        "show_wishlist": true
+      }
+    },
+    "bamboozld_why_choose_dWBcyU": {
+      "type": "bamboozld-why-choose",
+      "blocks": {
+        "feature_yNQed7": {
+          "type": "feature",
+          "settings": {
+            "title": "Breathable",
+            "description": "Bamboo has amazing characteristicts of being snugly and warm in winter and cool and comfortable in summer.",
+            "link": "",
+            "button_text": "Learn more"
+          }
+        },
+        "feature_7Y4kTd": {
+          "type": "feature",
+          "settings": {
+            "title": "Sustainable",
+            "description": "Bamboo has a natural pesticide which means no chemicals are used in growing or harvesting, providing a cleaner environment for the farm workers.",
+            "link": "",
+            "button_text": "Learn more"
+          }
+        },
+        "feature_HrFGxk": {
+          "type": "feature",
+          "settings": {
+            "title": "Antibacterial",
+            "description": "Bamboo fibre maintains some of the natural antibacterial properties of the plant and has been proven to assist in the control of odour.",
+            "link": "",
+            "button_text": "Learn more"
+          }
+        }
+      },
+      "block_order": [
+        "feature_yNQed7",
+        "feature_7Y4kTd",
+        "feature_HrFGxk"
+      ],
+      "settings": {
+        "title": "Why Choose Bamboo?"
+      }
+    },
+    "bamboozld_social_media_jQzEY7": {
+      "type": "bamboozld-social-media",
+      "settings": {
+        "heading": "LET'S GET SOCIAL! FOLLOW US",
+        "instagram_username": "@bamboozld",
+        "instagram_link": "",
+        "facebook_link": ""
       }
     }
   },
   "order": [
-    "featured_collection",
     "bamboozld_hero_dD4rgK",
-    "bamboozld_featured_categories_MN8YAd"
+    "bamboozld_featured_categories_MN8YAd",
+    "bamboozld_new_arrivals_TzPjiT",
+    "bamboozld_hero_7w7xXW",
+    "bamboozld_new_arrivals_F9iM99",
+    "bamboozld_why_choose_dWBcyU",
+    "bamboozld_social_media_jQzEY7"
   ]
 }
