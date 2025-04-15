@@ -108,6 +108,17 @@
         "show_wishlist": true
       }
     },
+    "bamboozld_hero_7w7xXW": {
+      "type": "bamboozld-hero",
+      "settings": {
+        "image": "shopify://shop_images/boots-on-blue.jpg",
+        "image_position": "bottom",
+        "hero_layout": "full_width",
+        "button_link": "shopify://collections",
+        "button_position": "center-center",
+        "button_label": "SHOP THE LOOKS"
+      }
+    },
     "bamboozld_ratings_KNfUQ4": {
       "type": "bamboozld-ratings",
       "blocks": {
@@ -150,17 +161,6 @@
         "padding_top": 60,
         "padding_bottom": 60,
         "background_color": "#ffffff"
-      }
-    },
-    "bamboozld_hero_7w7xXW": {
-      "type": "bamboozld-hero",
-      "settings": {
-        "image": "shopify://shop_images/boots-on-blue.jpg",
-        "image_position": "bottom",
-        "hero_layout": "full_width",
-        "button_link": "shopify://collections",
-        "button_position": "center-center",
-        "button_label": "SHOP THE LOOKS"
       }
     },
     "bamboozld_new_arrivals_F9iM99": {
@@ -230,8 +230,8 @@
     "bamboozld_hero_dD4rgK",
     "bamboozld_featured_categories_MN8YAd",
     "bamboozld_new_arrivals_TzPjiT",
-    "bamboozld_ratings_KNfUQ4",
     "bamboozld_hero_7w7xXW",
+    "bamboozld_ratings_KNfUQ4",
     "bamboozld_new_arrivals_F9iM99",
     "bamboozld_why_choose_dWBcyU",
     "bamboozld_social_media_jQzEY7"
