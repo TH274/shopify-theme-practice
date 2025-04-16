@@ -42,6 +42,18 @@
     },
     {
       "type": "checkbox",
+      "id": "show_secondary_image",
+      "label": "Show second image on hover",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
       "id": "show_new_label",
       "label": "Show 'New Arrival' label",
       "default": true
@@ -91,12 +103,24 @@
           
           <div class="product-image-wrapper">
             <a href="{{ product.url }}" class="product-link">
+              {% if product.featured_image %}
               <img 
                 src="{{ product.featured_image | img_url: '400x' }}" 
                 alt="{{ product.title | escape }}"
                 class="product-image"
                 loading="lazy"
               >
+              {% if section.settings.show_secondary_image and product.images[1] %}
+                <img 
+                  src="{{ product.images[1] | img_url: '500x' }}" 
+                  alt="{{ product.title | escape }}"
+                  class="product-image product-image-hover"
+                  loading="lazy"
+                >
+              {% endif %}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-image' }}
+            {% endif %}
             </a>
             
             {% if section.settings.show_wishlist %}

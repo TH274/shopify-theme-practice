@@ -21,8 +21,24 @@
       "min": 4,
       "max": 12,
       "step": 1,
-      "default": 8,
+      "default": 4,
       "label": "Products to show"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "slider",
+          "label": "Slider"
+        }
+      ],
+      "default": "slider"
     },
     {
       "type": "select",
@@ -69,74 +85,88 @@
 <div class="most-popular-section">
   <div class="most-popular-container">
     <h2 class="section-title">{{ section.settings.title }}</h2>
+
+    <div class="most-popular-slider {% if section.settings.layout == 'grid' %}most-popular-grid{% endif %}">
+      <div class="slider-nav slider-prev">
+        <button class="slider-btn prev-btn" aria-label="Previous slide">
+          {% render 'icon-arrow-left' %}
+        </button>
+      </div>
     
-    <div class="popular-products-grid" style="--grid-columns: {{ section.settings.grid_columns_desktop }};">
-      {% if section.settings.collection != blank %}
-        {% assign collection = collections[section.settings.collection] %}
-      {% else %}
-        {% assign collection = collections.featured-collection %}
-      {% endif %}
-      
-      {% for product in collection.products limit: section.settings.products_to_show %}
-        <div class="popular-product-card">
-          <div class="popular-product-card-inner">
-            <div class="popular-product-image-wrapper">
-              <a href="{{ product.url }}" class="product-link">
-                {% if product.featured_image %}
-                  <img 
-                    src="{{ product.featured_image | img_url: '500x' }}" 
-                    alt="{{ product.title | escape }}"
-                    class="product-image"
-                    loading="lazy"
-                  >
-                  
-                  {% if section.settings.show_secondary_image and product.images[1] %}
+      <div class="most-popular-products">
+        {% if section.settings.collection != blank %}
+          {% assign collection = collections[section.settings.collection] %}
+        {% else %}
+          {% assign collection = collections.featured-collection %}
+        {% endif %}
+        
+        {% for product in collection.products limit: section.settings.products_to_show %}
+          <div class="most-popular-product-card">
+            <div class="product-card-inner">
+              <div class="product-image-wrapper">
+                <a href="{{ product.url }}" class="product-link">
+                  {% if product.featured_image %}
                     <img 
-                      src="{{ product.images[1] | img_url: '500x' }}" 
+                      src="{{ product.featured_image | img_url: '500x' }}" 
                       alt="{{ product.title | escape }}"
-                      class="product-image product-image-hover"
+                      class="product-image"
                       loading="lazy"
                     >
+                    
+                    {% if section.settings.show_secondary_image and product.images[1] %}
+                      <img 
+                        src="{{ product.images[1] | img_url: '500x' }}" 
+                        alt="{{ product.title | escape }}"
+                        class="product-image product-image-hover"
+                        loading="lazy"
+                      >
+                    {% endif %}
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-image' }}
                   {% endif %}
-                {% else %}
-                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-image' }}
-                {% endif %}
-              </a>
-              
-              {% if product.compare_at_price > product.price %}
-                <div class="sale-badge">
-                  <span>On Sale</span>
-                </div>
-              {% endif %}
-              
-              {% if product.available == false %}
-                <div class="sold-out-badge">
-                  <span>Sold out</span>
-                </div>
-              {% endif %}
-            </div>
-            
-            <div class="product-info">
-              {% if section.settings.show_vendor %}
-                <div class="product-vendor">{{ product.vendor }}</div>
-              {% endif %}
-              
-              <h3 class="product-title">
-                <a href="{{ product.url }}">{{ product.title }}</a>
-              </h3>
-              
-              <div class="product-price">
+                </a>
+                
                 {% if product.compare_at_price > product.price %}
-                  <span class="regular-price">{{ product.price | money }}</span>
-                  <span class="compare-price">{{ product.compare_at_price | money }}</span>
-                {% else %}
-                  <span class="regular-price">{{ product.price | money }}</span>
+                  <div class="sale-badge">
+                    <span>On Sale</span>
+                  </div>
                 {% endif %}
+                
+                {% if product.available == false %}
+                  <div class="sold-out-badge">
+                    <span>Sold out</span>
+                  </div>
+                {% endif %}
+              </div>
+              
+              <div class="product-info">
+                {% if section.settings.show_vendor %}
+                  <div class="product-vendor">{{ product.vendor }}</div>
+                {% endif %}
+                
+                <h3 class="product-title">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+                
+                <div class="product-price">
+                  {% if product.compare_at_price > product.price %}
+                    <span class="regular-price">{{ product.price | money }}</span>
+                    <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                  {% else %}
+                    <span class="regular-price">{{ product.price | money }}</span>
+                  {% endif %}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      </div>
+
+      <div class="slider-nav slider-next">
+        <button class="slider-btn next-btn" aria-label="Next slide">
+          {% render 'icon-arrow-right' %}
+        </button>
+      </div>
     </div>
   </div>
 </div>
@@ -153,7 +183,7 @@
     padding: 0 20px;
   }
   
-  .section-title {
+  .most-popular-section .section-title {
     font-size: 32px;
     font-weight: 700;
     text-align: center;
@@ -162,31 +192,48 @@
     color: #333;
   }
   
-  .popular-products-grid {
-    display: grid;
-    grid-template-columns: repeat(var(--grid-columns, 4), 1fr);
-    gap: 20px;
+  .most-popular-slider {
+    position: relative;
+    display: flex;
+    align-items: center;
   }
   
-  .popular-product-card {
+  .most-popular-products {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+  }
+  
+  .most-popular-grid .most-popular-products {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns, 4), 1fr);
+    overflow: visible;
+  }
+  
+  .most-popular-product-card {
     position: relative;
+    flex: 0 0 calc(25% - 20px);
+    min-width: 250px;
     margin-bottom: 20px;
   }
   
-  .popular-product-card-inner {
+  .most-popular-product-card .product-card-inner {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
   
-  .popular-product-image-wrapper {
+  .most-popular-product-card .product-image-wrapper {
     position: relative;
     overflow: hidden;
     padding-bottom: 125%; /* 4:5 aspect ratio */
     margin-bottom: 15px;
   }
   
-  .product-image {
+  .most-popular-product-card .product-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -196,20 +243,20 @@
     transition: opacity 0.3s ease;
   }
   
-  .product-image-hover {
+  .most-popular-product-card .product-image-hover {
     opacity: 0;
   }
   
-  .product-link:hover .product-image-hover {
+  .most-popular-product-card .product-link:hover .product-image-hover {
     opacity: 1;
   }
   
-  .product-link:hover .product-image:not(.product-image-hover) {
+  .most-popular-product-card .product-link:hover .product-image:not(.product-image-hover) {
     opacity: 0;
   }
   
-  .sale-badge, 
-  .sold-out-badge {
+  .most-popular-product-card .sale-badge, 
+  .most-popular-product-card .sold-out-badge {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -220,83 +267,140 @@
     text-transform: uppercase;
   }
   
-  .sale-badge {
+  .most-popular-product-card .sale-badge {
     background-color: #e53935;
     color: white;
   }
   
-  .sold-out-badge {
+  .most-popular-product-card .sold-out-badge {
     background-color: #9e9e9e;
     color: white;
   }
   
-  .product-info {
+  .most-popular-product-card .product-info {
     padding: 10px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
   }
   
-  .product-vendor {
+  .most-popular-product-card .product-vendor {
     font-size: 14px;
     color: #777;
     margin-bottom: 5px;
   }
   
-  .product-title {
+  .most-popular-product-card .product-title {
     font-size: 16px;
     margin: 0 0 8px;
     font-weight: 500;
     line-height: 1.4;
   }
   
-  .product-title a {
+  .most-popular-product-card .product-title a {
     color: #333;
     text-decoration: none;
   }
   
-  .product-title a:hover {
+  .most-popular-product-card .product-title a:hover {
     color: #555;
   }
   
-  .product-price {
+  .most-popular-product-card .product-price {
     display: flex;
     gap: 10px;
     align-items: center;
     margin-top: auto;
   }
   
-  .regular-price {
+  .most-popular-product-card .regular-price {
     font-weight: 600;
     font-size: 15px;
     color: #333;
   }
   
-  .compare-price {
+  .most-popular-product-card .compare-price {
     text-decoration: line-through;
     color: #999;
     font-size: 14px;
   }
   
+  .most-popular-section .slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .most-popular-section .slider-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .most-popular-grid .slider-nav {
+    display: none;
+  }
+  
   @media screen and (max-width: 989px) {
-    .products-grid {
+    .most-popular-grid .most-popular-products {
       grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .most-popular-product-card {
+      flex: 0 0 calc(33.33% - 20px);
     }
   }
   
   @media screen and (max-width: 749px) {
-    .products-grid {
+    .most-popular-grid .most-popular-products {
       grid-template-columns: repeat(2, 1fr);
     }
     
-    .section-title {
+    .most-popular-section .section-title {
       font-size: 28px;
+    }
+    
+    .most-popular-product-card {
+      flex: 0 0 calc(50% - 20px);
     }
   }
   
   @media screen and (max-width: 480px) {
-    .section-title {
+    .most-popular-section .section-title {
       font-size: 24px;
     }
+    
+    .most-popular-product-card {
+      min-width: 200px;
+    }
   }
-</style> 
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.querySelector('.most-popular-section .most-popular-products');
+    const prevBtn = document.querySelector('.most-popular-section .prev-btn');
+    const nextBtn = document.querySelector('.most-popular-section .next-btn');
+    
+    if (container && prevBtn && nextBtn) {
+      const scrollAmount = container.clientWidth * 0.8;
+      
+      prevBtn.addEventListener('click', function() {
+        container.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+      
+      nextBtn.addEventListener('click', function() {
+        container.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+    }
+  });
+</script> 
