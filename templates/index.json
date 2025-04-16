@@ -97,15 +97,17 @@
         "columns_desktop": "2"
       }
     },
-    "bamboozld_new_arrivals_TzPjiT": {
-      "type": "bamboozld-new-arrivals",
+    "bamboozld_most_popular_M7BVhy": {
+      "type": "bamboozld-most-popular",
+      "name": "Most Popular",
       "settings": {
-        "title": "NEW ARRIVALS",
+        "title": "MOST POPULAR",
         "collection": "new-arrival",
-        "products_to_show": 12,
+        "products_to_show": 8,
         "layout": "slider",
-        "show_new_label": true,
-        "show_wishlist": true
+        "grid_columns_desktop": "4",
+        "show_secondary_image": true,
+        "show_vendor": false
       }
     },
     "bamboozld_hero_7w7xXW": {
@@ -167,9 +169,11 @@
       "type": "bamboozld-new-arrivals",
       "settings": {
         "title": "MOST POPULAR",
-        "collection": "hydrogen",
+        "collection": "frontpage",
         "products_to_show": 12,
         "layout": "slider",
+        "show_secondary_image": false,
+        "show_vendor": false,
         "show_new_label": false,
         "show_wishlist": true
       }
@@ -229,7 +233,7 @@
   "order": [
     "bamboozld_hero_dD4rgK",
     "bamboozld_featured_categories_MN8YAd",
-    "bamboozld_new_arrivals_TzPjiT",
+    "bamboozld_most_popular_M7BVhy",
     "bamboozld_hero_7w7xXW",
     "bamboozld_ratings_KNfUQ4",
     "bamboozld_new_arrivals_F9iM99",
