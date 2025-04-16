@@ -70,7 +70,7 @@
   <div class="most-popular-container">
     <h2 class="section-title">{{ section.settings.title }}</h2>
     
-    <div class="products-grid" style="--grid-columns: {{ section.settings.grid_columns_desktop }};">
+    <div class="popular-products-grid" style="--grid-columns: {{ section.settings.grid_columns_desktop }};">
       {% if section.settings.collection != blank %}
         {% assign collection = collections[section.settings.collection] %}
       {% else %}
@@ -78,9 +78,9 @@
       {% endif %}
       
       {% for product in collection.products limit: section.settings.products_to_show %}
-        <div class="product-card">
-          <div class="product-card-inner">
-            <div class="product-image-wrapper">
+        <div class="popular-product-card">
+          <div class="popular-product-card-inner">
+            <div class="popular-product-image-wrapper">
               <a href="{{ product.url }}" class="product-link">
                 {% if product.featured_image %}
                   <img 
@@ -162,24 +162,24 @@
     color: #333;
   }
   
-  .products-grid {
+  .popular-products-grid {
     display: grid;
     grid-template-columns: repeat(var(--grid-columns, 4), 1fr);
     gap: 20px;
   }
   
-  .product-card {
+  .popular-product-card {
     position: relative;
     margin-bottom: 20px;
   }
   
-  .product-card-inner {
+  .popular-product-card-inner {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
   
-  .product-image-wrapper {
+  .popular-product-image-wrapper {
     position: relative;
     overflow: hidden;
     padding-bottom: 125%; /* 4:5 aspect ratio */

@@ -101,7 +101,7 @@
       "type": "bamboozld-new-arrivals",
       "settings": {
         "title": "NEW ARRIVALS",
-        "collection": "automated-collection",
+        "collection": "new-arrival",
         "products_to_show": 12,
         "layout": "slider",
         "show_new_label": true,
