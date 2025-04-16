@@ -12,8 +12,8 @@
     "bamboozld_hero_dD4rgK": {
       "type": "bamboozld-hero",
       "settings": {
-        "image": "shopify://shop_images/theme_cover_image.jpg",
-        "image_position": "center",
+        "image": "shopify://shop_images/BAM12_2000_x_888_px_1.webp",
+        "image_position": "bottom",
         "hero_layout": "fixed_width",
         "button_link": "shopify://collections",
         "button_position": "bottom-right",
@@ -26,7 +26,7 @@
         "category_AWG9Wj": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/feet-pose-white-sport-sock.jpg",
+            "image": "shopify://shop_images/Untitled_design_-_2025-03-13T193813.089.webp",
             "link": "shopify://collections/automated-collection",
             "button_label": "MEN'S SOCK",
             "button_position": "bottom-right",
@@ -36,7 +36,7 @@
         "category_m9rxWd": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/legs-crossed-hot-dog-socks.jpg",
+            "image": "shopify://shop_images/Untitled_design_-_2025-03-13T191625.007.webp",
             "link": "shopify://collections/all",
             "button_label": "WOMEN'S SOCK",
             "button_position": "bottom-right",
@@ -46,7 +46,7 @@
         "category_LKTWU4": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/simple-beige-mens-shirt.jpg",
+            "image": "shopify://shop_images/Untitled_design_-_2025-03-13T191831.993.webp",
             "link": "shopify://collections/all",
             "button_label": "MEN'S SLEEPWEAR",
             "button_position": "bottom-right",
@@ -56,7 +56,7 @@
         "category_CMNmtJ": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/person-sits-cross-legged-in-summer-fashion.jpg",
+            "image": "shopify://shop_images/Untitled_design_-_2025-03-13T192313.084.webp",
             "link": "shopify://collections",
             "button_label": "WOMAN'S SLEEPWEAR",
             "button_position": "bottom-right",
@@ -66,7 +66,7 @@
         "category_x3jBAz": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/business-man-checks-mobile.jpg",
+            "image": "shopify://shop_images/Untitled_design_-_2025-03-13T193246.093.webp",
             "link": "shopify://collections",
             "button_label": "MEN'S JACKET",
             "button_position": "bottom-right",
@@ -76,7 +76,7 @@
         "category_WKPQ4X": {
           "type": "category",
           "settings": {
-            "image": "shopify://shop_images/urban-fashion.jpg",
+            "image": "shopify://shop_images/Untitled_design_-_2025-03-13T192637.178.webp",
             "link": "shopify://collections",
             "button_label": "WOMEN'S JACKET",
             "button_position": "bottom-right",
@@ -111,7 +111,7 @@
     "bamboozld_hero_7w7xXW": {
       "type": "bamboozld-hero",
       "settings": {
-        "image": "shopify://shop_images/boots-on-blue.jpg",
+        "image": "shopify://shop_images/BAM12_2000_x_888_px_2.webp",
         "image_position": "bottom",
         "hero_layout": "full_width",
         "button_link": "shopify://collections",

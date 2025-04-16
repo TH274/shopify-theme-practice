@@ -207,9 +207,8 @@
   }
   
   .featured-categories-container {
-    max-width: 1400px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 0 20px;
   }
   
   .section-title {
@@ -253,13 +252,11 @@
   .category-image-container {
     position: relative;
     overflow: hidden;
-    padding-bottom: 80%; /* 4:5 aspect ratio */
+    padding-bottom: 70.25%;
   }
   
   .category-image {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -281,9 +278,10 @@
   }
   
   .category-button-container {
+    min-width: 200px;
     position: absolute;
     z-index: 2;
-    padding: 1rem;
+    padding: 24px 30px;
   }
   
   .category-button-container.top-left {
@@ -328,9 +326,9 @@
     background-color: white;
     padding: clamp(8px, 1vw, 10px) clamp(15px, 2vw, 25px);
     color: #333;
-    word-spacing: 0.1em;
-    font-weight: 600;
-    font-size: clamp(14px, 1.5vw, 20px);
+    word-spacing: 0.2em;
+    font-weight: 900;
+    font-size: clamp(12px, 1.5vw, 16px);
     text-transform: capitalize;
     display: inline-block;
     transition: all 0.3s ease;
