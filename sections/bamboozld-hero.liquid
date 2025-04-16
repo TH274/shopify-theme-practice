@@ -42,14 +42,14 @@
   }
 
   .hero-inner.fixed_width {
-    width: 1250px;
+    width: 1240px;
     margin: 0 auto;
   }
 
   .hero-image {
     width: 100%;
     height: 0;
-    padding-bottom: 42.85%; /* 16:9 aspect ratio */
+    padding-bottom: 44.5%;
     position: relative;
     overflow: hidden;
   }
@@ -61,7 +61,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: {{ section.settings.image_position }};
+    object-position: center {{ section.settings.image_position }};
     display: block;
     will-change: transform;
   }
@@ -130,7 +130,7 @@
   }
   
   .button-container {
-    margin-top: 25px;
+    margin: 25px 130px 12px 100px; 
   }
   
   .hero-button {
@@ -139,7 +139,7 @@
     color: #333;
     word-spacing: 0.1em;
     font-weight: 600;
-    font-size: clamp(14px, 1.5vw, 20px);
+    font-size: clamp(12px, 1.5vw, 16px);
     text-transform: capitalize;
     display: inline-block;
     transition: all 0.3s ease;
