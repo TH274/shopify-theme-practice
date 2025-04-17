@@ -94,6 +94,7 @@
       ],
       "settings": {
         "layout": "grid",
+        "size": "landscape",
         "columns_desktop": "2"
       }
     },
@@ -162,7 +163,7 @@
       "settings": {
         "title": "WHAT OUR CUSTOMERS ARE SAYING",
         "review_count": "1268 Reviews",
-        "padding_top": 60,
+        "padding_top": 90,
         "padding_bottom": 60,
         "background_color": "#ffffff"
       }
@@ -175,7 +176,6 @@
         "collection": "frontpage",
         "products_to_show": 12,
         "layout": "slider",
-        "show_secondary_image": false,
         "show_vendor": false,
         "show_wishlist": true
       }

@@ -1,3 +1,104 @@
+{% schema %}
+  {
+    "name": "hero banner",
+    "tag": "section",
+    "class": "hero-banner",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Choose an image"
+      },
+      {
+        "type": "select",
+        "id": "image_position",
+        "label": "image position",
+        "options": [
+          {
+            "label": "Top",
+            "value": "top"
+          }, {
+            "label": "Center",
+            "value": "center"
+          }, {
+            "label": "Bottom",
+            "value": "bottom"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "hero_layout",
+        "label": "Layout",
+        "default": "full_width",
+        "options": [
+          {
+            "label": "Full width",
+            "value": "full_width"
+          }, {
+            "label": "Fixed Width",
+            "value": "fixed_width"
+          }
+        ]
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button Link"
+      }, {
+        "type": "select",
+        "id": "button_position",
+        "label": "Button Position",
+        "default": "center-center",
+        "options": [
+          {
+            "label": "Top Left",
+            "value": "top-left"
+          },
+          {
+            "label": "Top Center",
+            "value": "top-center"
+          },
+          {
+            "label": "Top Right",
+            "value": "top-right"
+          },
+          {
+            "label": "Middle Left",
+            "value": "center-left"
+          }, {
+            "label": "Center",
+            "value": "center-center"
+          }, {
+            "label": "Middle Right",
+            "value": "center-right"
+          }, {
+            "label": "Bottom Left",
+            "value": "bottom-left"
+          }, {
+            "label": "Bottom Center",
+            "value": "bottom-center"
+          }, {
+            "label": "Bottom Right",
+            "value": "bottom-right"
+          }
+        ]
+      }, {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button Label",
+        "default": "Shop now"
+      }
+    ],
+    "presets": [
+      {
+        "name": "hero banner",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
 <div class="hero-banner">
   <div class="hero-inner {{ section.settings.hero_layout }}">
     <div class="hero-image">
@@ -182,103 +283,3 @@
     }
   }
 </style>
-{% schema %}
-  {
-    "name": "hero banner",
-    "tag": "section",
-    "class": "hero-banner",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "image",
-        "label": "Choose an image"
-      },
-      {
-        "type": "select",
-        "id": "image_position",
-        "label": "image position",
-        "options": [
-          {
-            "label": "Top",
-            "value": "top"
-          }, {
-            "label": "Center",
-            "value": "center"
-          }, {
-            "label": "Bottom",
-            "value": "bottom"
-          }
-        ]
-      },
-      {
-        "type": "select",
-        "id": "hero_layout",
-        "label": "Layout",
-        "default": "full_width",
-        "options": [
-          {
-            "label": "Full width",
-            "value": "full_width"
-          }, {
-            "label": "Fixed Width",
-            "value": "fixed_width"
-          }
-        ]
-      },
-      {
-        "type": "url",
-        "id": "button_link",
-        "label": "Button Link"
-      }, {
-        "type": "select",
-        "id": "button_position",
-        "label": "Button Position",
-        "default": "center-center",
-        "options": [
-          {
-            "label": "Top Left",
-            "value": "top-left"
-          },
-          {
-            "label": "Top Center",
-            "value": "top-center"
-          },
-          {
-            "label": "Top Right",
-            "value": "top-right"
-          },
-          {
-            "label": "Middle Left",
-            "value": "center-left"
-          }, {
-            "label": "Center",
-            "value": "center-center"
-          }, {
-            "label": "Middle Right",
-            "value": "center-right"
-          }, {
-            "label": "Bottom Left",
-            "value": "bottom-left"
-          }, {
-            "label": "Bottom Center",
-            "value": "bottom-center"
-          }, {
-            "label": "Bottom Right",
-            "value": "bottom-right"
-          }
-        ]
-      }, {
-        "type": "text",
-        "id": "button_label",
-        "label": "Button Label",
-        "default": "Shop now"
-      }
-    ],
-    "presets": [
-      {
-        "name": "hero banner",
-        "category": "Image"
-      }
-    ]
-  }
-{% endschema %}

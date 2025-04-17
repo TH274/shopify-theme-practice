@@ -167,8 +167,8 @@
         {% for block in section.blocks %}
           {% if block.type == 'category' %}
             <div class="category-item" {{ block.shopify_attributes }}>
-              <div class="category-image-container">
-                {% if block.settings.image %}
+              <div class="category-image-container {{ section.settings.size }}">
+                  {% if block.settings.image %}
                   <img 
                     src="{{ block.settings.image | img_url: '500x' }}" 
                     alt="{{ block.settings.title | escape }}"
@@ -260,6 +260,14 @@
     overflow: hidden;
     padding-bottom: 70.25%;
   }
+
+  .category-image-container.landscape {
+    padding-bottom: 70.25%;
+  }
+
+  .category-image-container.portrait {
+    padding-bottom: 125%;
+  }
   
   .category-image {
     position: absolute;
@@ -329,13 +337,13 @@
   }
   
   .category-button {
+    font-family: "Montserrat", sans-serif;
     background-color: white;
-    padding: clamp(8px, 1vw, 10px) clamp(15px, 2vw, 25px);
+    padding: 12px 30px;
     color: #333;
     word-spacing: 0.2em;
-    font-weight: 900;
-    font-size: clamp(12px, 1.5vw, 16px);
-    text-transform: capitalize;
+    font-weight: 700;
+    font-size: 14px;
     display: inline-block;
     transition: all 0.3s ease;
     white-space: nowrap;
