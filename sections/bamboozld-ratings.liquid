@@ -111,8 +111,8 @@
             <span class="star filled">★</span>
             <span class="star filled">★</span>
             <span class="star filled">★</span>
+            <span class="reviews-count">{{ section.settings.review_count }}</span>
           </div>
-          <span class="reviews-count">{{ section.settings.review_count }}</span>
         </div>
       </div>
     {% endif %}
@@ -168,16 +168,6 @@
   
   .section-header-reviews {
     text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  .section-title {
-    font-size: 32px;
-    font-weight: 700;
-    color: #333;
-    margin: 0 0 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
   }
   
   .reviews-rating {
@@ -186,12 +176,11 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 5px;
   }
   
   .rating-stars {
-    font-size: 24px;
-    color: #FFD700;
+    font-size: 18px;
+    color: #FF9E1B;
   }
   
   .reviews-count {
@@ -241,7 +230,7 @@
   .review-rating {
     margin-bottom: 15px;
     font-size: 20px;
-    color: #FFD700;
+    color: #FF9E1B;
     display: flex;
     justify-content: center;
   }
@@ -323,12 +312,10 @@
     
     if (!reviewsContainer || !prevBtn || !nextBtn) return;
     
-    // Responsive settings
     const updateLayout = () => {
       const windowWidth = window.innerWidth;
       const reviewCards = document.querySelectorAll('.review-card');
       
-      // Reset all cards visibility
       reviewCards.forEach(card => {
         card.style.display = '';
       });
@@ -341,14 +328,12 @@
           currentIndex = parseInt(reviewsContainer.dataset.currentIndex);
         }
         
-        // Hide all cards except the current one
         reviewCards.forEach((card, index) => {
           if (index !== currentIndex) {
             card.style.display = 'none';
           }
         });
         
-        // Enable prev/next buttons
         prevBtn.addEventListener('click', () => {
           currentIndex = (currentIndex - 1 + reviewCards.length) % reviewCards.length;
           reviewsContainer.dataset.currentIndex = currentIndex;
@@ -367,7 +352,6 @@
           });
         });
       } else if (windowWidth <= 991) {
-        // Tablet view - showing pairs of cards
         let currentPairIndex = 0;
         if (!reviewsContainer.dataset.currentPairIndex) {
           reviewsContainer.dataset.currentPairIndex = currentPairIndex;
@@ -377,7 +361,6 @@
         
         const totalPairs = Math.ceil(reviewCards.length / 2);
         
-        // Show only the current pair
         reviewCards.forEach((card, index) => {
           const pairIndex = Math.floor(index / 2);
           if (pairIndex !== currentPairIndex) {
@@ -385,7 +368,6 @@
           }
         });
         
-        // Enable prev/next buttons for pairs
         prevBtn.addEventListener('click', () => {
           currentPairIndex = (currentPairIndex - 1 + totalPairs) % totalPairs;
           reviewsContainer.dataset.currentPairIndex = currentPairIndex;
@@ -415,7 +397,6 @@
         
         const totalTrios = Math.ceil(reviewCards.length / 3);
         
-        // Show only current trio
         reviewCards.forEach((card, index) => {
           const trioIndex = Math.floor(index / 3);
           if (trioIndex !== currentTrioIndex) {

@@ -4,7 +4,6 @@
   "tag": "section",
   "class": "section-featured-categories",
   "settings": [
-
     {
       "type": "select",
       "id": "layout",
@@ -18,6 +17,22 @@
         {
           "value": "slider",
           "label": "Slider"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "size",
+      "default": "landscape",
+      "options": [
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
         }
       ]
     },
@@ -211,15 +226,6 @@
     margin: 0 auto;
   }
   
-  .section-title {
-    font-size: 32px;
-    font-weight: 700;
-    margin: 0 0 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #333;
-  }
-  
   .categories-wrapper {
     position: relative;
     display: flex;
@@ -386,10 +392,6 @@
   @media screen and (max-width: 749px) {
     .featured-categories-section {
       padding: 40px 0;
-    }
-    
-    .section-title {
-      font-size: 28px;
     }
     
     .categories-grid .categories-container {

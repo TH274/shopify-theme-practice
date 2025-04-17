@@ -97,17 +97,19 @@
         "columns_desktop": "2"
       }
     },
-    "bamboozld_most_popular_M7BVhy": {
-      "type": "bamboozld-most-popular",
-      "name": "Most Popular",
+    "bamboozld_new_arrival_fgVrEz": {
+      "type": "bamboozld-new-arrival",
+      "name": "New Arrivals",
       "settings": {
-        "title": "MOST POPULAR",
+        "title": "NEW ARRIVALS",
         "collection": "new-arrival",
-        "products_to_show": 8,
+        "products_to_show": 12,
         "layout": "slider",
         "grid_columns_desktop": "4",
         "show_secondary_image": true,
-        "show_vendor": false
+        "show_vendor": false,
+        "show_new_label": true,
+        "show_wishlist": true
       }
     },
     "bamboozld_hero_7w7xXW": {
@@ -165,8 +167,9 @@
         "background_color": "#ffffff"
       }
     },
-    "bamboozld_new_arrivals_F9iM99": {
-      "type": "bamboozld-new-arrivals",
+    "bamboozld_most_popular_fJ6R8b": {
+      "type": "bamboozld-most-popular",
+      "name": "Most Popular",
       "settings": {
         "title": "MOST POPULAR",
         "collection": "frontpage",
@@ -174,7 +177,6 @@
         "layout": "slider",
         "show_secondary_image": false,
         "show_vendor": false,
-        "show_new_label": false,
         "show_wishlist": true
       }
     },
@@ -233,10 +235,10 @@
   "order": [
     "bamboozld_hero_dD4rgK",
     "bamboozld_featured_categories_MN8YAd",
-    "bamboozld_most_popular_M7BVhy",
+    "bamboozld_new_arrival_fgVrEz",
     "bamboozld_hero_7w7xXW",
     "bamboozld_ratings_KNfUQ4",
-    "bamboozld_new_arrivals_F9iM99",
+    "bamboozld_most_popular_fJ6R8b",
     "bamboozld_why_choose_dWBcyU",
     "bamboozld_social_media_jQzEY7"
   ]

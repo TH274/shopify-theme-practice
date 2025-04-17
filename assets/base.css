@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
@@ -3595,4 +3597,11 @@ details-disclosure > details {
   100% {
     transform: translateX(100%) scaleX(0);
   }
+}
+
+.section-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
 }
