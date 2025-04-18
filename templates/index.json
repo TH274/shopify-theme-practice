@@ -28,7 +28,7 @@
           "settings": {
             "image": "shopify://shop_images/Untitled_design_-_2025-03-13T193813.089.webp",
             "link": "shopify://collections/automated-collection",
-            "button_label": "MEN'S SOCK",
+            "button_label": "MEN'S SOCKS",
             "button_position": "bottom-right",
             "show_overlay_text": true
           }
@@ -38,7 +38,7 @@
           "settings": {
             "image": "shopify://shop_images/Untitled_design_-_2025-03-13T191625.007.webp",
             "link": "shopify://collections/all",
-            "button_label": "WOMEN'S SOCK",
+            "button_label": "WOMEN'S SOCKS",
             "button_position": "bottom-right",
             "show_overlay_text": true
           }
@@ -189,7 +189,8 @@
             "title": "Breathable",
             "description": "Bamboo has amazing characteristicts of being snugly and warm in winter and cool and comfortable in summer.",
             "link": "shopify://blogs/news/kris-kringle-gift-they-loved",
-            "button_text": "Learn more"
+            "button_text": "Learn more",
+            "icon": "shopify://shop_images/icon-2_icon_1_1.png"
           }
         },
         "feature_7Y4kTd": {
@@ -198,7 +199,8 @@
             "title": "Sustainable",
             "description": "Bamboo has a natural pesticide which means no chemicals are used in growing or harvesting, providing a cleaner environment for the farm workers.",
             "link": "shopify://collections",
-            "button_text": "Learn more"
+            "button_text": "Learn more",
+            "icon": "shopify://shop_images/icon-1_icon_1_1.png"
           }
         },
         "feature_HrFGxk": {
@@ -207,7 +209,8 @@
             "title": "Antibacterial",
             "description": "Bamboo fibre maintains some of the natural antibacterial properties of the plant and has been proven to assist in the control of odour.",
             "link": "shopify://blogs/news",
-            "button_text": "Learn more"
+            "button_text": "Learn more",
+            "icon": "shopify://shop_images/icon-3_icon_1_1.png"
           }
         }
       },
@@ -218,17 +221,61 @@
       ],
       "settings": {
         "title": "Why Choose Bamboo?",
-        "image": "shopify://shop_images/red-and-blue-shoreline-iphone-screen.jpg",
+        "image": "shopify://shop_images/desktop-bg.webp",
         "text_color": "text-white"
+      }
+    },
+    "bamboozld_featured_categories_jkBN4x": {
+      "type": "bamboozld-featured-categories",
+      "blocks": {
+        "category_cJU4Yr": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_400_x_500_px_1.webp",
+            "link": "shopify://collections/new-arrival",
+            "button_label": "WOMAN'S BASIC",
+            "button_position": "bottom-center",
+            "show_overlay_text": true
+          }
+        },
+        "category_KcFDnn": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/Untitled_400_x_500_px_2.webp",
+            "link": "shopify://products/mens-duck-thugs-bamboo-boxer-short",
+            "button_label": "MEN'S BASIC",
+            "button_position": "bottom-center",
+            "show_overlay_text": true
+          }
+        },
+        "category_gGbQjh": {
+          "type": "category",
+          "settings": {
+            "image": "shopify://shop_images/BBW22UTWEINER-GRY_2.webp",
+            "link": "shopify://pages/contact",
+            "button_label": "MEN'S TRUNK",
+            "button_position": "bottom-center",
+            "show_overlay_text": true
+          }
+        }
+      },
+      "block_order": [
+        "category_cJU4Yr",
+        "category_KcFDnn",
+        "category_gGbQjh"
+      ],
+      "name": "Featured Categories",
+      "settings": {
+        "layout": "grid",
+        "size": "portrait",
+        "columns_desktop": "3"
       }
     },
     "bamboozld_social_media_jQzEY7": {
       "type": "bamboozld-social-media",
       "settings": {
-        "heading": "LET'S GET SOCIAL! FOLLOW US",
-        "instagram_username": "@bamboozld",
-        "instagram_link": "",
-        "facebook_link": ""
+        "instagram_link": "shopify://blogs/news",
+        "button_label": "LET'S GET SOCIAL ! FOLLOW US"
       }
     }
   },
@@ -240,6 +287,7 @@
     "bamboozld_ratings_KNfUQ4",
     "bamboozld_most_popular_fJ6R8b",
     "bamboozld_why_choose_dWBcyU",
+    "bamboozld_featured_categories_jkBN4x",
     "bamboozld_social_media_jQzEY7"
   ]
 }
