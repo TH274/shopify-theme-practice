@@ -100,7 +100,6 @@
     },
     "bamboozld_new_arrival_fgVrEz": {
       "type": "bamboozld-new-arrival",
-      "name": "New Arrivals",
       "settings": {
         "title": "NEW ARRIVALS",
         "collection": "new-arrival",
@@ -127,6 +126,33 @@
     "bamboozld_ratings_KNfUQ4": {
       "type": "bamboozld-ratings",
       "blocks": {
+        "testimonial_yFtUem": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Happy Customer",
+            "testimonial_text": "asdasdasdasd",
+            "rating": 5,
+            "verified_by_shop": true
+          }
+        },
+        "testimonial_RxNdtF": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Happy Customer",
+            "testimonial_text": "asdasdasdasdt",
+            "rating": 5,
+            "verified_by_shop": true
+          }
+        },
+        "testimonial_mdMgjA": {
+          "type": "testimonial",
+          "settings": {
+            "customer_name": "Happy Customer",
+            "testimonial_text": "Super soft and gorgeous pattern - super for an easter present",
+            "rating": 5,
+            "verified_by_shop": true
+          }
+        },
         "testimonial_Kne7HV": {
           "type": "testimonial",
           "settings": {
@@ -156,6 +182,9 @@
         }
       },
       "block_order": [
+        "testimonial_yFtUem",
+        "testimonial_RxNdtF",
+        "testimonial_mdMgjA",
         "testimonial_Kne7HV",
         "testimonial_dRRmEP",
         "testimonial_kF7QNC"
@@ -170,7 +199,6 @@
     },
     "bamboozld_most_popular_fJ6R8b": {
       "type": "bamboozld-most-popular",
-      "name": "Most Popular",
       "settings": {
         "title": "MOST POPULAR",
         "collection": "frontpage",
@@ -264,7 +292,6 @@
         "category_KcFDnn",
         "category_gGbQjh"
       ],
-      "name": "Featured Categories",
       "settings": {
         "layout": "grid",
         "size": "portrait",
