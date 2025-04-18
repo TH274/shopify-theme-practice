@@ -425,6 +425,9 @@
           nextBtn.addEventListener('click', nextBtnClickHandler);
           container.addEventListener('scroll', scrollHandler);
           
+          // Add drag to scroll functionality
+          setupDragToScroll(container);
+          
           function prevBtnClickHandler() {
             container.scrollBy({
               left: -scrollAmount,
@@ -444,6 +447,59 @@
           }
         }
       });
+    }
+    
+    function setupDragToScroll(element) {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      element.addEventListener('mousedown', (e) => {
+        isDown = true;
+        element.style.cursor = 'grabbing';
+        startX = e.pageX - element.offsetLeft;
+        scrollLeft = element.scrollLeft;
+        e.preventDefault();
+      });
+
+      element.addEventListener('mouseleave', () => {
+        isDown = false;
+        element.style.cursor = 'grab';
+      });
+
+      element.addEventListener('mouseup', () => {
+        isDown = false;
+        element.style.cursor = 'grab';
+      });
+
+      element.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - element.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        element.scrollLeft = scrollLeft - walk;
+      });
+      
+      // Set initial cursor style
+      element.style.cursor = 'grab';
+      
+      // Add touch support for mobile devices
+      element.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - element.offsetLeft;
+        scrollLeft = element.scrollLeft;
+      }, { passive: true });
+
+      element.addEventListener('touchend', () => {
+        isDown = false;
+      });
+
+      element.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - element.offsetLeft;
+        const walk = (x - startX) * 2;
+        element.scrollLeft = scrollLeft - walk;
+      }, { passive: true });
     }
     
     function updateNavButtons(container, prevBtn, nextBtn) {

@@ -312,9 +312,24 @@
     
     if (!reviewsContainer || !prevBtn || !nextBtn) return;
     
+    // Variables for auto-scrolling
+    let autoScrollInterval;
+    const autoScrollDelay = 3000; // 3 seconds
+    
+    // Global function for auto-scrolling that will be determined based on screen size
+    let autoScrollHandler = function() {};
+    let prevBtnClickHandler, nextBtnClickHandler;
+    
     const updateLayout = () => {
       const windowWidth = window.innerWidth;
       const reviewCards = document.querySelectorAll('.review-card');
+      
+      // Clear existing interval before setting up new handlers
+      clearInterval(autoScrollInterval);
+      
+      // Remove existing event listeners to prevent duplication
+      prevBtn.removeEventListener('click', prevBtnClickHandler);
+      nextBtn.removeEventListener('click', nextBtnClickHandler);
       
       reviewCards.forEach(card => {
         card.style.display = '';
@@ -334,23 +349,35 @@
           }
         });
         
-        prevBtn.addEventListener('click', () => {
+        prevBtnClickHandler = function() {
+          resetAutoScroll();
           currentIndex = (currentIndex - 1 + reviewCards.length) % reviewCards.length;
           reviewsContainer.dataset.currentIndex = currentIndex;
           
           reviewCards.forEach((card, index) => {
             card.style.display = index === currentIndex ? '' : 'none';
           });
-        });
+        };
         
-        nextBtn.addEventListener('click', () => {
+        nextBtnClickHandler = function() {
+          resetAutoScroll();
           currentIndex = (currentIndex + 1) % reviewCards.length;
           reviewsContainer.dataset.currentIndex = currentIndex;
           
           reviewCards.forEach((card, index) => {
             card.style.display = index === currentIndex ? '' : 'none';
           });
-        });
+        };
+        
+        autoScrollHandler = function() {
+          currentIndex = (currentIndex + 1) % reviewCards.length;
+          reviewsContainer.dataset.currentIndex = currentIndex;
+          
+          reviewCards.forEach((card, index) => {
+            card.style.display = index === currentIndex ? '' : 'none';
+          });
+        };
+        
       } else if (windowWidth <= 991) {
         let currentPairIndex = 0;
         if (!reviewsContainer.dataset.currentPairIndex) {
@@ -368,7 +395,8 @@
           }
         });
         
-        prevBtn.addEventListener('click', () => {
+        prevBtnClickHandler = function() {
+          resetAutoScroll();
           currentPairIndex = (currentPairIndex - 1 + totalPairs) % totalPairs;
           reviewsContainer.dataset.currentPairIndex = currentPairIndex;
           
@@ -376,9 +404,10 @@
             const pairIndex = Math.floor(index / 2);
             card.style.display = pairIndex === currentPairIndex ? '' : 'none';
           });
-        });
+        };
         
-        nextBtn.addEventListener('click', () => {
+        nextBtnClickHandler = function() {
+          resetAutoScroll();
           currentPairIndex = (currentPairIndex + 1) % totalPairs;
           reviewsContainer.dataset.currentPairIndex = currentPairIndex;
           
@@ -386,7 +415,18 @@
             const pairIndex = Math.floor(index / 2);
             card.style.display = pairIndex === currentPairIndex ? '' : 'none';
           });
-        });
+        };
+        
+        autoScrollHandler = function() {
+          currentPairIndex = (currentPairIndex + 1) % totalPairs;
+          reviewsContainer.dataset.currentPairIndex = currentPairIndex;
+          
+          reviewCards.forEach((card, index) => {
+            const pairIndex = Math.floor(index / 2);
+            card.style.display = pairIndex === currentPairIndex ? '' : 'none';
+          });
+        };
+        
       } else {
         let currentTrioIndex = 0;
         if (!reviewsContainer.dataset.currentTrioIndex) {
@@ -404,7 +444,8 @@
           }
         });
         
-        prevBtn.addEventListener('click', () => {
+        prevBtnClickHandler = function() {
+          resetAutoScroll();
           currentTrioIndex = (currentTrioIndex - 1 + totalTrios) % totalTrios;
           reviewsContainer.dataset.currentTrioIndex = currentTrioIndex;
           
@@ -412,9 +453,10 @@
             const trioIndex = Math.floor(index / 3);
             card.style.display = trioIndex === currentTrioIndex ? '' : 'none';
           });
-        });
+        };
         
-        nextBtn.addEventListener('click', () => {
+        nextBtnClickHandler = function() {
+          resetAutoScroll();
           currentTrioIndex = (currentTrioIndex + 1) % totalTrios;
           reviewsContainer.dataset.currentTrioIndex = currentTrioIndex;
           
@@ -422,11 +464,126 @@
             const trioIndex = Math.floor(index / 3);
             card.style.display = trioIndex === currentTrioIndex ? '' : 'none';
           });
-        });
+        };
+        
+        autoScrollHandler = function() {
+          currentTrioIndex = (currentTrioIndex + 1) % totalTrios;
+          reviewsContainer.dataset.currentTrioIndex = currentTrioIndex;
+          
+          reviewCards.forEach((card, index) => {
+            const trioIndex = Math.floor(index / 3);
+            card.style.display = trioIndex === currentTrioIndex ? '' : 'none';
+          });
+        };
       }
+      
+      // Add event listeners after they've been defined
+      prevBtn.addEventListener('click', prevBtnClickHandler);
+      nextBtn.addEventListener('click', nextBtnClickHandler);
+      
+      // Setup auto-scrolling
+      setupAutoScroll();
     };
     
+    // Helper functions for auto-scrolling
+    function setupAutoScroll() {
+      // Clear any existing interval
+      clearInterval(autoScrollInterval);
+      // Set new interval
+      autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
+    }
+    
+    function resetAutoScroll() {
+      // Reset the interval when user manually navigates
+      clearInterval(autoScrollInterval);
+      autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
+    }
+    
+    // Make reviews container horizontally scrollable on touch devices
+    setupDragToScroll(reviewsContainer);
+    
+    function setupDragToScroll(element) {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      
+      element.style.cursor = 'grab';
+      
+      element.addEventListener('mousedown', (e) => {
+        isDown = true;
+        element.style.cursor = 'grabbing';
+        startX = e.pageX - element.offsetLeft;
+        scrollLeft = element.scrollLeft;
+        e.preventDefault();
+        
+        // Pause auto-scroll when user interacts
+        clearInterval(autoScrollInterval);
+      });
+      
+      element.addEventListener('mouseleave', () => {
+        isDown = false;
+        element.style.cursor = 'grab';
+        
+        // Resume auto-scroll
+        if (autoScrollInterval) clearInterval(autoScrollInterval);
+        autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
+      });
+      
+      element.addEventListener('mouseup', () => {
+        isDown = false;
+        element.style.cursor = 'grab';
+        
+        // Resume auto-scroll
+        if (autoScrollInterval) clearInterval(autoScrollInterval);
+        autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
+      });
+      
+      element.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - element.offsetLeft;
+        const walk = (x - startX) * 2;
+        element.scrollLeft = scrollLeft - walk;
+      });
+      
+      element.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - element.offsetLeft;
+        scrollLeft = element.scrollLeft;
+        
+        // Pause auto-scroll when user interacts
+        clearInterval(autoScrollInterval);
+      }, { passive: true });
+      
+      element.addEventListener('touchend', () => {
+        isDown = false;
+        
+        if (autoScrollInterval) clearInterval(autoScrollInterval);
+        autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
+      });
+      
+      element.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - element.offsetLeft;
+        const walk = (x - startX) * 2;
+        element.scrollLeft = scrollLeft - walk;
+      }, { passive: true });
+    }
+    
     updateLayout();
-    window.addEventListener('resize', updateLayout);
+    
+    window.addEventListener('resize', function() {
+      clearInterval(autoScrollInterval);
+      updateLayout();
+    });
+    
+    document.querySelector('.reviews-carousel').addEventListener('mouseenter', function() {
+      clearInterval(autoScrollInterval);
+    });
+    
+    document.querySelector('.reviews-carousel').addEventListener('mouseleave', function() {
+      if (autoScrollInterval) clearInterval(autoScrollInterval);
+      autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
+    });
   });
 </script> 
