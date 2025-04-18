@@ -304,6 +304,16 @@
         "instagram_link": "shopify://blogs/news",
         "button_label": "LET'S GET SOCIAL ! FOLLOW US"
       }
+    },
+    "bamboozld_newsletter_q3z8tW": {
+      "type": "bamboozld-newsletter",
+      "settings": {
+        "heading": "Get an immediate 20% discount!",
+        "subheading": "Subscribe and stay up to date with our latest news and products. *Offer excludes already discounted items and Bundles",
+        "button_text": "Subscribe",
+        "background_color": "#f8f8f8",
+        "text_color": "#333333"
+      }
     }
   },
   "order": [
@@ -315,6 +325,7 @@
     "bamboozld_most_popular_fJ6R8b",
     "bamboozld_why_choose_dWBcyU",
     "bamboozld_featured_categories_jkBN4x",
-    "bamboozld_social_media_jQzEY7"
+    "bamboozld_social_media_jQzEY7",
+    "bamboozld_newsletter_q3z8tW"
   ]
 }

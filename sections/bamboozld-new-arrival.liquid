@@ -437,7 +437,6 @@
   document.addEventListener('DOMContentLoaded', function() {
     initNewArrivalsSlider();
     
-    // Re-initialize slider on window resize for better responsiveness
     window.addEventListener('resize', debounce(function() {
       initNewArrivalsSlider();
     }, 250));
@@ -451,33 +450,26 @@
         const nextBtn = slider.querySelector('.next-btn');
         
         if (container && prevBtn && nextBtn) {
-          // Calculate card width (including margins/gap)
           const cards = container.querySelectorAll('.new-arrival-product-card');
           
           if (cards.length === 0) return;
           
-          // Get number of visible cards based on container width
           const cardRect = cards[0].getBoundingClientRect();
           const cardWidth = cardRect.width;
           const visibleCards = Math.floor(container.clientWidth / cardWidth);
           
-          // Calculate the scroll amount (scroll one card at a time)
           const scrollAmount = cardWidth + parseInt(getComputedStyle(container).gap);
           
-          // Handle button visibility
           updateNavButtons(container, prevBtn, nextBtn);
           
-          // Remove existing event listeners to avoid duplication
           prevBtn.removeEventListener('click', prevBtnClickHandler);
           nextBtn.removeEventListener('click', nextBtnClickHandler);
           container.removeEventListener('scroll', scrollHandler);
           
-          // Set up new event listeners
           prevBtn.addEventListener('click', prevBtnClickHandler);
           nextBtn.addEventListener('click', nextBtnClickHandler);
           container.addEventListener('scroll', scrollHandler);
           
-          // Add drag to scroll functionality
           setupDragToScroll(container);
           
           function prevBtnClickHandler() {
@@ -505,6 +497,7 @@
       let isDown = false;
       let startX;
       let scrollLeft;
+      let isDragging = false;
 
       element.addEventListener('mousedown', (e) => {
         isDown = true;
@@ -516,11 +509,29 @@
 
       element.addEventListener('mouseleave', () => {
         isDown = false;
+        isDragging = false;
         element.style.cursor = 'grab';
       });
 
-      element.addEventListener('mouseup', () => {
+      element.addEventListener('mouseup', (e) => {
+        if (isDragging) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const clickedElement = e.target;
+          const closestLink = clickedElement.closest('a');
+          if (closestLink) {
+            const clickHandler = function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              closestLink.removeEventListener('click', clickHandler);
+            };
+            closestLink.addEventListener('click', clickHandler, { once: true });
+          }
+        }
+        
         isDown = false;
+        isDragging = false;
         element.style.cursor = 'grab';
       });
 
@@ -528,28 +539,56 @@
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - element.offsetLeft;
-        const walk = (x - startX) * 2; // Scroll speed multiplier
+        const walk = (x - startX) * 2;
+        
+        if (Math.abs(walk) > 5) {
+          isDragging = true;
+        }
+        
         element.scrollLeft = scrollLeft - walk;
       });
       
-      // Set initial cursor style
       element.style.cursor = 'grab';
       
-      // Add touch support for mobile devices
       element.addEventListener('touchstart', (e) => {
         isDown = true;
         startX = e.touches[0].pageX - element.offsetLeft;
         scrollLeft = element.scrollLeft;
       }, { passive: true });
 
-      element.addEventListener('touchend', () => {
+      element.addEventListener('touchend', (e) => {
+        if (isDragging) {
+          const touchTarget = document.elementFromPoint(
+            e.changedTouches[0].clientX, 
+            e.changedTouches[0].clientY
+          );
+          
+          if (touchTarget) {
+            const closestLink = touchTarget.closest('a');
+            if (closestLink) {
+              e.preventDefault();
+              const clickHandler = function(e) {
+                e.preventDefault();
+                closestLink.removeEventListener('click', clickHandler);
+              };
+              closestLink.addEventListener('click', clickHandler, { once: true });
+            }
+          }
+        }
+        
         isDown = false;
+        isDragging = false;
       });
 
       element.addEventListener('touchmove', (e) => {
         if (!isDown) return;
         const x = e.touches[0].pageX - element.offsetLeft;
         const walk = (x - startX) * 2;
+        
+        if (Math.abs(walk) > 10) {
+          isDragging = true;
+        }
+        
         element.scrollLeft = scrollLeft - walk;
       }, { passive: true });
     }
@@ -558,7 +597,6 @@
       const scrollLeft = container.scrollLeft;
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
       
-      // Show/hide prev button
       if (scrollLeft <= 0) {
         prevBtn.parentElement.style.opacity = '0.5';
         prevBtn.style.pointerEvents = 'none';
@@ -567,8 +605,7 @@
         prevBtn.style.pointerEvents = 'auto';
       }
       
-      // Show/hide next button
-      if (scrollLeft >= maxScrollLeft - 5) { // 5px threshold for rounding errors
+      if (scrollLeft >= maxScrollLeft - 5) {
         nextBtn.parentElement.style.opacity = '0.5';
         nextBtn.style.pointerEvents = 'none';
       } else {
@@ -577,7 +614,6 @@
       }
     }
     
-    // Debounce function to prevent too many resize events
     function debounce(func, wait) {
       let timeout;
       return function() {
