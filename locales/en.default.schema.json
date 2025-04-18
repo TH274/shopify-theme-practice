@@ -493,6 +493,75 @@
           "category": "Collection"
         }
       },
+      "why-choose": {
+        "name": "Why Choose Bamboo",
+        "settings": {
+          "title": "Section title",
+          "default": "WHY CHOOSE BAMBOO?",
+          "text_color": "Text Color",
+          "options": {
+            "text-black": "Black",
+            "text-white": "White"
+          }
+        },
+        "blocks": {
+          "feature": {
+            "name": "Feature",
+            "settings": {
+              "title": "Feature title",
+              "default": "Feature",
+              "description": "Feature description",
+              "link": "Feature link",
+              "button_text": "Feature button text",
+              "icon": "Feature icon"
+            }
+          }
+        },
+        "presets": {
+          "name": "Why Choose Bamboo",
+          "category": "Collection"
+        }
+      },
+      "ratings": {
+        "name": "Ratings",
+        "settings": {
+          "title": "Section title",
+          "default": "CUSTOMER REVIEWS",
+          "padding_top": "Top padding",
+          "padding_bottom": "Bottom padding",
+          "background_color": "Background color",
+          "review_count": {
+            "label": "Review count",
+            "default": "1000 Reviews"
+          }
+        },
+          "blocks": {
+            "testimonial": {
+              "name": "Testimonial",
+                "customer_name": {
+                  "label": "Customer name",
+                  "default": "John Doe"
+                },
+                "customer_rating": "Customer rating",
+                "customer_review": {
+                  "label": "Customer review",
+                  "default": "Super soft and gorgeous pattern - super for an easter present"
+                },
+                "verified_by_shop": "Show Verified by shop"
+            }
+          }
+      },
+      "social-media": {
+        "name": "Social Media",
+        "settings": {
+          "instagram_link": "Instagram link",
+          "button_label": "Button label",
+          "default": "LET'S GET SOCIAL! FOLLOW US",
+          "presets": {
+            "name": "Social Media"
+          }
+        }
+      },
     "all": {
       "animation": {
         "content": "Animations",

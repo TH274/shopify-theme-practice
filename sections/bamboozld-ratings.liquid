@@ -1,29 +1,29 @@
 {% schema %}
 {
-  "name": "Customer Reviews",
+  "name": "t:sections.ratings.name",
   "tag": "section",
   "class": "section-customer-reviews",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "label": "Section Title",
-      "default": "WHAT OUR CUSTOMERS ARE SAYING"
+      "label": "t:sections.ratings.settings.title",
+      "default": "t:sections.ratings.settings.default"
     },
     {
       "type": "text",
       "id": "review_count",
-      "label": "Total Review Count",
-      "default": "1268 Reviews"
+      "label": "t:sections.ratings.settings.review_count.label",
+      "default": "t:sections.ratings.settings.review_count.default"
     },
     {
       "type": "range",
       "id": "padding_top",
       "min": 0,
       "max": 100,
-      "step": 10,
+      "step": 5,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.ratings.settings.padding_top",
       "default": 60
     },
     {
@@ -31,34 +31,34 @@
       "id": "padding_bottom",
       "min": 0,
       "max": 100,
-      "step": 10,
+      "step": 5,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.ratings.settings.padding_bottom",
       "default": 60
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "Background Color",
+      "label": "t:sections.ratings.settings.background_color",
       "default": "#ffffff"
     }
   ],
   "blocks": [
     {
       "type": "testimonial",
-      "name": "Testimonial",
+      "name": "t:sections.ratings.blocks.testimonial.name",
       "settings": [
         {
           "type": "text",
           "id": "customer_name",
-          "label": "Customer Name",
-          "default": "Happy Customer"
+          "label": "t:sections.ratings.blocks.testimonial.customer_name.label",
+          "default": "t:sections.ratings.blocks.testimonial.customer_name.default"
         },
         {
           "type": "textarea",
           "id": "testimonial_text",
-          "label": "Testimonial",
-          "default": "Super soft and gorgeous pattern - super for an easter present"
+          "label": "t:sections.ratings.blocks.testimonial.customer_review.label",
+          "default": "t:sections.ratings.blocks.testimonial.customer_review.default"
         },
         {
           "type": "range",
@@ -66,13 +66,13 @@
           "min": 1,
           "max": 5,
           "step": 1,
-          "label": "Rating (1-5)",
+          "label": "t:sections.ratings.blocks.testimonial.customer_rating",
           "default": 5
         },
         {
           "type": "checkbox",
           "id": "verified_by_shop",
-          "label": "Show 'Verified by Shop' badge",
+          "label": "t:sections.ratings.blocks.testimonial.verified_by_shop",
           "default": true
         }
       ]

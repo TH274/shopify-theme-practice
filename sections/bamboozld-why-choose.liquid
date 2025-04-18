@@ -1,32 +1,32 @@
 {% schema %}
 {
-  "name": "Why Choose Bamboo",
+  "name": "t:sections.why-choose.name",
   "tag": "section",
   "class": "section-why-choose",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "label": "Section Title",
-      "default": "Why Choose Bamboo?"
+      "label": "t:sections.why-choose.settings.title",
+      "default": "t:sections.why-choose.settings.default"
     },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Choose an image"
+      "label": "t:sections.bamboozld.image"
     },
     {
       "type": "select",
       "id": "text_color",
-      "label": "Text Color",
+      "label": "t:sections.why-choose.settings.text_color",
       "options": [
         {
           "value": "text-black",
-          "label": "Black"
+          "label": "t:sections.why-choose.settings.options.text-black"
         },
         {
           "value": "text-white",
-          "label": "White"
+          "label": "t:sections.why-choose.settings.options.text-white"
         }
       ],
       "default": "text-black"
@@ -35,43 +35,43 @@
   "blocks": [
     {
       "type": "feature",
-      "name": "Feature",
+      "name": "t:sections.why-choose.blocks.feature.name",
       "limit": 3,
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Feature Title",
+          "label": "t:sections.why-choose.blocks.feature.settings.title",
           "default": "Feature"
         },
         {
           "type": "textarea",
           "id": "description",
-          "label": "Feature Description",
+          "label": "t:sections.why-choose.blocks.feature.settings.description",
           "default": "Describe the feature here."
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Button Link"
+          "label": "t:sections.why-choose.blocks.feature.settings.link"
         },
         {
           "type": "text",
           "id": "button_text",
-          "label": "Button Text",
+          "label": "t:sections.why-choose.blocks.feature.settings.button_text",
           "default": "Learn more"
         },
         {
           "type": "image_picker",
           "id": "icon",
-          "label": "Feature Icon"
+          "label": "t:sections.why-choose.blocks.feature.settings.icon"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Why Choose Bamboo",
+      "name": "t:sections.why-choose.presets.name",
       "blocks": [
         {
           "type": "feature",
