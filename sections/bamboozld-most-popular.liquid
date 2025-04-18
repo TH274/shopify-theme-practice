@@ -1,19 +1,19 @@
 {% schema %}
 {
-  "name": "Most Popular",
+  "name": "t:sections.most-popular.name",
   "tag": "section",
   "class": "section-most-popular",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "label": "Section Title",
-      "default": "MOST POPULAR"
+      "label": "t:sections.most-popular.settings.title",
+      "default": "t:sections.most-popular.settings.default"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection"
+      "label": "t:sections.bamboozld.collection"
     },
     {
       "type": "range",
@@ -22,20 +22,20 @@
       "max": 12,
       "step": 1,
       "default": 4,
-      "label": "Products to show"
+      "label": "t:sections.bamboozld.range"
     },
     {
       "type": "select",
       "id": "layout",
-      "label": "Layout",
+      "label": "t:sections.bamboozld.layout.label",
       "options": [
         {
           "value": "grid",
-          "label": "Grid"
+          "label": "t:sections.bamboozld.layout.option_1.label"
         },
         {
           "value": "slider",
-          "label": "Slider"
+          "label": "t:sections.bamboozld.layout.option_2.label"
         }
       ],
       "default": "slider"
@@ -44,20 +44,20 @@
     {
       "type": "checkbox",
       "id": "show_vendor",
-      "label": "Show product vendor",
+      "label": "t:sections.bamboozld.checkbox.option_2.label",
       "default": false
     },
     {
       "type": "checkbox",
       "id": "show_wishlist",
-      "label": "Show wishlist icon",
+      "label": "t:sections.bamboozld.checkbox.option_4.label",
       "default": true
     }
   ],
   "presets": [
     {
-      "name": "Most Popular",
-      "category": "Collection"
+      "name": "t:sections.most-popular.presets.name",
+      "category": "t:sections.most-popular.presets.category"
     }
   ]
 }

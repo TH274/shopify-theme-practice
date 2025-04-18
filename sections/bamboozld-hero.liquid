@@ -1,27 +1,27 @@
 {% schema %}
   {
-    "name": "hero banner",
+    "name": "t:sections.bamboozld-hero.name",
     "tag": "section",
     "class": "hero-banner",
     "settings": [
       {
         "type": "image_picker",
         "id": "image",
-        "label": "Choose an image"
+        "label": "t:sections.bamboozld.image"
       },
       {
         "type": "select",
         "id": "image_position",
-        "label": "image position",
+        "label": "t:sections.bamboozld-hero.settings.image_position.label",
         "options": [
           {
-            "label": "Top",
+            "label": "t:sections.bamboozld-hero.settings.image_position.options.top",
             "value": "top"
           }, {
-            "label": "Center",
+            "label": "t:sections.bamboozld-hero.settings.image_position.options.center",
             "value": "center"
           }, {
-            "label": "Bottom",
+            "label": "t:sections.bamboozld-hero.settings.image_position.options.bottom",
             "value": "bottom"
           }
         ]
@@ -29,14 +29,14 @@
       {
         "type": "select",
         "id": "hero_layout",
-        "label": "Layout",
+        "label": "t:sections.bamboozld-hero.settings.hero_layout.label",
         "default": "full_width",
         "options": [
           {
-            "label": "Full width",
+            "label": "t:sections.bamboozld-hero.settings.hero_layout.options.full_width",
             "value": "full_width"
           }, {
-            "label": "Fixed Width",
+            "label": "t:sections.bamboozld-hero.settings.hero_layout.options.fixed_width",
             "value": "fixed_width"
           }
         ]
@@ -44,50 +44,50 @@
       {
         "type": "url",
         "id": "button_link",
-        "label": "Button Link"
+        "label": "t:sections.bamboozld.button_link"
       }, {
         "type": "select",
         "id": "button_position",
-        "label": "Button Position",
+        "label": "t:sections.bamboozld.button_position.label",
         "default": "center-center",
         "options": [
           {
-            "label": "Top Left",
+            "label": "t:sections.bamboozld.button_position.options.top-left",
             "value": "top-left"
           },
           {
-            "label": "Top Center",
+            "label": "t:sections.bamboozld.button_position.options.top-center",
             "value": "top-center"
           },
           {
-            "label": "Top Right",
+            "label": "t:sections.bamboozld.button_position.options.top-right",
             "value": "top-right"
           },
           {
-            "label": "Middle Left",
+            "label": "t:sections.bamboozld.button_position.options.center-left",
             "value": "center-left"
           }, {
-            "label": "Center",
+            "label": "t:sections.bamboozld.button_position.options.center-center",
             "value": "center-center"
           }, {
-            "label": "Middle Right",
+            "label": "t:sections.bamboozld.button_position.options.center-right",
             "value": "center-right"
           }, {
-            "label": "Bottom Left",
+            "label": "t:sections.bamboozld.button_position.options.bottom-left",
             "value": "bottom-left"
           }, {
-            "label": "Bottom Center",
+            "label": "t:sections.bamboozld.button_position.options.bottom-center",
             "value": "bottom-center"
           }, {
-            "label": "Bottom Right",
+            "label": "t:sections.bamboozld.button_position.options.bottom-right",
             "value": "bottom-right"
           }
         ]
       }, {
         "type": "text",
         "id": "button_label",
-        "label": "Button Label",
-        "default": "Shop now"
+        "label": "t:sections.bamboozld.button_label.label",
+        "default": "t:sections.bamboozld.button_label.default"
       }
     ],
     "presets": [

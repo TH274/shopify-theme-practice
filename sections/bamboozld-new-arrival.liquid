@@ -1,19 +1,19 @@
 {% schema %}
 {
-  "name": "New Arrivals",
+  "name": "t:sections.new-arrival.name",
   "tag": "section",
   "class": "section-new-arrivals",
   "settings": [
     {
       "type": "text",
       "id": "title",
-      "label": "Section Title",
-      "default": "NEW ARRIVALS"
+      "label": "t:sections.new-arrival.settings.title",
+      "default": "t:sections.new-arrival.settings.default"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Collection"
+      "label": "t:sections.bamboozld.collection"
     },
     {
       "type": "range",
@@ -22,20 +22,20 @@
       "max": 12,
       "step": 1,
       "default": 4,
-      "label": "Products to show"
+      "label": "t:sections.bamboozld.range"
     },
     {
       "type": "select",
       "id": "layout",
-      "label": "Layout",
+      "label": "t:sections.bamboozld.layout.label",
       "options": [
         {
           "value": "grid",
-          "label": "Grid"
+          "label": "t:sections.bamboozld.layout.option_1.label"
         },
         {
           "value": "slider",
-          "label": "Slider"
+          "label": "t:sections.bamboozld.layout.option_2.label"
         }
       ],
       "default": "slider"
@@ -43,19 +43,19 @@
     {
       "type": "select",
       "id": "grid_columns_desktop",
-      "label": "Columns on desktop",
+      "label": "t:sections.bamboozld.column_desktop.label",
       "options": [
         {
           "value": "2",
-          "label": "2 columns"
+          "label": "t:sections.bamboozld.column_desktop.options.two"
         },
         {
           "value": "3",
-          "label": "3 columns"
+          "label": "t:sections.bamboozld.column_desktop.options.three"
         },
         {
           "value": "4",
-          "label": "4 columns"
+          "label": "t:sections.bamboozld.column_desktop.options.four"
         }
       ],
       "default": "4"
@@ -63,32 +63,32 @@
     {
       "type": "checkbox",
       "id": "show_secondary_image",
-      "label": "Show second image on hover",
+      "label": "t:sections.bamboozld.checkbox.option_1.label",
       "default": false
     },
     {
       "type": "checkbox",
       "id": "show_vendor",
-      "label": "Show product vendor",
+      "label": "t:sections.bamboozld.checkbox.option_2.label",
       "default": false
     },
     {
       "type": "checkbox",
       "id": "show_new_label",
-      "label": "Show 'New Arrival' label",
+      "label": "t:sections.bamboozld.checkbox.option_3.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_wishlist",
-      "label": "Show wishlist icon",
+      "label": "t:sections.bamboozld.checkbox.option_4.label",
       "default": true
     }
   ],
   "presets": [
     {
-      "name": "New Arrivals",
-      "category": "Collection"
+      "name": "t:sections.new-arrival.presets.name",
+      "category": "t:sections.new-arrival.presets.category"
     }
   ]
 }

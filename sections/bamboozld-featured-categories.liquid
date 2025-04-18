@@ -1,61 +1,61 @@
 {% schema %}
 {
-  "name": "Featured Categories",
+  "name": "t:sections.bamboozld-category.name",
   "tag": "section",
   "class": "section-featured-categories",
   "settings": [
     {
       "type": "select",
       "id": "layout",
-      "label": "Layout",
+      "label": "t:sections.bamboozld.layout.label",
       "default": "grid",
       "options": [
         {
           "value": "grid",
-          "label": "Grid"
+          "label": "t:sections.bamboozld.layout.option_1.label"
         },
         {
           "value": "slider",
-          "label": "Slider"
+          "label": "t:sections.bamboozld.layout.option_2.label"
         }
       ]
     },
     {
       "type": "select",
       "id": "size",
-      "label": "size",
+      "label": "t:sections.bamboozld-category.category_size.label",
       "default": "landscape",
       "options": [
         {
           "value": "landscape",
-          "label": "Landscape"
+          "label": "t:sections.bamboozld-category.category_size.options.landscape"
         },
         {
           "value": "portrait",
-          "label": "Portrait"
+          "label": "t:sections.bamboozld-category.category_size.options.portrait"
         }
       ]
     },
     {
       "type": "select",
       "id": "columns_desktop",
-      "label": "Number of columns",
+      "label": "t:sections.bamboozld.column_desktop.label",
       "options": [
         {
           "value": "2",
-          "label": "2 columns"
+          "label": "t:sections.bamboozld.column_desktop.options.two"
         },
         {
           "value": "3",
-          "label": "3 columns"
+          "label": "t:sections.bamboozld.column_desktop.options.three"
         },
         {
           "value": "4",
-          "label": "4 columns"
+          "label": "t:sections.bamboozld.column_desktop.options.four"
         },
         {
           "value": "5",
-          "label": "5 columns"
+          "label": "t:sections.bamboozld.column_desktop.options.five"
         }
       ],
       "default": "4"
@@ -64,64 +64,67 @@
   "blocks": [
     {
       "type": "category",
-      "name": "Category",
+      "name": "t:sections.bamboozld-category.blocks.category.name",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Image"
+          "label": "t:sections.bamboozld.image"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Category Link"
+          "label": "t:sections.bamboozld.button_link"
         },
         {
           "type": "text",
           "id": "button_label",
-          "label": "Button Label",
-          "default": "Shop Now"
+          "label": "t:sections.bamboozld.button_label.label",
+          "default": "t:sections.bamboozld.button_label.default"
         },
         {
-          "type": "select",
-          "id": "button_position",
-          "label": "Button Position",
-          "default": "bottom-center",
-          "options": [
-            {
-              "label": "Top Left",
-              "value": "top-left"
-            },
-            {
-              "label": "Top Center",
-              "value": "top-center"
-            },
-            {
-              "label": "Top Right",
-              "value": "top-right"
-            },
-            {
-              "label": "Center",
-              "value": "center"
-            },
-            {
-              "label": "Bottom Left",
-              "value": "bottom-left"
-            },
-            {
-              "label": "Bottom Center",
-              "value": "bottom-center"
-            },
-            {
-              "label": "Bottom Right",
-              "value": "bottom-right"
-            }
-          ]
-        },
+        "type": "select",
+        "id": "button_position",
+        "label": "t:sections.bamboozld.button_position.label",
+        "default": "center-center",
+        "options": [
+          {
+            "label": "t:sections.bamboozld.button_position.options.top-left",
+            "value": "top-left"
+          },
+          {
+            "label": "t:sections.bamboozld.button_position.options.top-center",
+            "value": "top-center"
+          },
+          {
+            "label": "t:sections.bamboozld.button_position.options.top-right",
+            "value": "top-right"
+          },
+          {
+            "label": "t:sections.bamboozld.button_position.options.center-left",
+            "value": "center-left"
+          }, {
+            "label": "t:sections.bamboozld.button_position.options.center-center",
+            "value": "center-center"
+          }, {
+            "label": "t:sections.bamboozld.button_position.options.center-right",
+            "value": "center-right"
+          }, {
+            "label": "t:sections.bamboozld.button_position.options.bottom-left",
+            "value": "bottom-left"
+          }, {
+            "label": "t:sections.bamboozld.button_position.options.bottom-center",
+            "value": "bottom-center"
+          }, {
+            "label": "t:sections.bamboozld.button_position.options.bottom-right",
+            "value": "bottom-right"
+          }
+        ]
+      },
         {
           "type": "checkbox",
           "id": "show_overlay_text",
-          "label": "Show text overlay on image",
+          "label": "t:sections.bamboozld-category.blocks.category.settings.checkbox.label",
           "default": true
         }
       ]

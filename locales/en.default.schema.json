@@ -373,6 +373,126 @@
     }
   },
   "sections": {
+    "bamboozld": {
+      "name": "Bamboozld",
+      "image": "Choose an image",
+      "collection": "Collection",
+      "range": "Products to show", 
+      "button_link": "Button Link",
+      "button_label": {
+        "label": "Button Label",
+        "default": "Shop now"
+      },
+      "checkbox": {
+        "option_1": {
+          "label": "Show second image on hover"
+        },
+        "option_2": {
+          "label": "Show product vendor"
+        },
+        "option_3": {
+          "label": "Show 'New Arrival' badge"
+        },
+        "option_4": {
+          "label": "Show Wishlist icon"
+        }
+      },
+      "layout": {
+        "label": "Layout",
+        "option_1": {
+          "label": "Grid"
+        },
+        "option_2": {
+          "label": "Slider"
+        }
+      },
+      "column_desktop": {
+        "label": "Number of columns",
+        "options": {
+          "two": "2 columns",
+          "three": "3 columns",
+          "four": "4 columns",
+          "five": "5 columns"
+        }
+      },
+      "button_position": {
+        "label": "Button Position",
+        "options": {
+          "top-left": "Top Left",
+          "top-center": "Top Center",
+          "top-right": "Top Right",
+          "center-left": "Middle Left",
+          "center-center": "Center",
+          "center-right": "Middle Right",
+          "bottom-left": "Bottom Left",
+          "bottom-center": "Bottom Center",
+          "bottom-right": "Bottom Right"
+        }
+      }
+    },
+    "bamboozld-hero": {
+      "name": "Hero Banner",
+      "settings": {
+        "image_position": {
+          "label": "Image Position",
+          "options": {
+            "top": "Top",
+            "center": "Center",
+            "bottom": "Bottom"
+          }
+        },
+        "hero_layout": {
+          "label": "Layout",
+          "default": "full_width",
+          "options": {
+            "full_width": "Full Width",
+            "fixed_width": "Fixed Width"
+          }
+        }
+      }
+    },
+    "bamboozld-category": {
+      "name": "Featured Categories",
+      "blocks": {
+        "category": {
+          "name": "Category",
+          "settings": {
+            "checkbox": {
+              "label": "Show text overlay on image"
+            }
+          }
+        }
+    },
+        "category_size": {
+          "label": "Size",
+          "options": {
+            "landscape": "landscape",
+            "portrait": "Portrait"
+          }
+        }
+      },
+      "new-arrival": {
+        "name": "New Arrival",
+        "settings": {
+          "title": "Section title",
+          "default": "NEW ARRIVAL"
+        },
+        "presets": {
+          "name": "New Arrival",
+          "category": "Collection"
+        }
+      },
+      "most-popular": {
+        "name": "Most Popular",
+        "settings": {
+          "title": "Section title",
+          "default": "MOST POPULAR"
+        },
+        "presets": {
+          "name": "Most Popular",
+          "category": "Collection"
+        }
+      },
     "all": {
       "animation": {
         "content": "Animations",
@@ -940,7 +1060,7 @@
               "default": "Share"
             },
             "featured_image_info": {
-              "content": "If you include a link in social media posts, the page’s featured image will be shown as the preview image. [Learn more](https://help.shopify.com/manual/online-store/images/showing-social-media-thumbnail-images)"
+              "content": "If you include a link in social media posts, the page's featured image will be shown as the preview image. [Learn more](https://help.shopify.com/manual/online-store/images/showing-social-media-thumbnail-images)"
             },
             "title_info": {
               "content": "A store title and description are included with the preview image. [Learn more](https://help.shopify.com/manual/promoting-marketing/seo/adding-keywords#set-a-title-and-description-for-your-online-store)"
@@ -977,7 +1097,7 @@
           }
         },
         "hide_variants": {
-          "label": "Hide unselected variants’ media on desktop"
+          "label": "Hide unselected variants' media on desktop"
         },
         "enable_video_looping": {
           "label": "Loop video"
