@@ -20,19 +20,36 @@
       "type": "text",
       "id": "button_text",
       "label": "Button Text",
-      "default": "Subscribe"
+      "default": "SUBSCRIBE"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Sustainability Logo"
     },
     {
       "type": "color",
-      "id": "background_color",
-      "label": "Background Color",
-      "default": "#f8f8f8"
+      "id": "left_background_color",
+      "label": "Left Section Background Color",
+      "default": "#8ebe67"
+    },
+    {
+      "type": "color",
+      "id": "right_background_color",
+      "label": "Right Section Background Color",
+      "default": "#8ebe67"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
-      "default": "#333333"
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button Color",
+      "default": "#ff5d5d"
     }
   ],
   "presets": [
@@ -43,78 +60,137 @@
 }
 {% endschema %}
 
-<div class="newsletter-section" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+<div class="newsletter-banner">
   <div class="newsletter-container">
-    {% if section.settings.heading != blank %}
-      <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
-    {% endif %}
-    
-    {% if section.settings.subheading != blank %}
-      <div class="newsletter-subheading">{{ section.settings.subheading }}</div>
-    {% endif %}
-    
-    {%- form 'customer', id: 'newsletter-form', class: 'newsletter-form' -%}
-      <input type="hidden" name="contact[tags]" value="newsletter">
-      <div class="newsletter-field-wrapper">
-        <div class="newsletter-field">
-          <input
-            id="NewsletterEmail"
-            type="email"
-            name="contact[email]"
-            class="newsletter-input"
-            value="{{ form.email }}"
-            aria-required="true"
-            autocorrect="off"
-            autocapitalize="off"
-            autocomplete="email"
-            placeholder="Email address"
-            required
-          >
-          <button type="submit" class="newsletter-button" name="commit">
-            {{ section.settings.button_text }}
-          </button>
-        </div>
+    <div class="sustainability-section" style="background-color: {{ section.settings.left_background_color }};">
+      <div class="sustainability-logo">
+        {% if section.settings.logo_image != blank %}
+          <img src="{{ section.settings.logo_image | img_url: 'master' }}" alt="Sustainability Promise">
+        {% else %}
+          <img src="{{ 'sustainability-promise.png' | asset_url }}" alt="Sustainability Promise">
+        {% endif %} 
       </div>
+      <div class="sustainability-text">
+        <p>Bamboozld's mission is to contribute to economic growth, social progress and promote environmental sustainability.</p>
+        <a href="#" class="learn-more-link">Learn more</a>
+      </div>
+    </div>
+    
+    <div class="newsletter-section" style="background-color: {{ section.settings.right_background_color }}; color: {{ section.settings.text_color }};">
+      {% if section.settings.heading != blank %}
+        <h2 class="newsletter-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
       
-      {%- if form.errors -%}
-        <div class="newsletter-error">
-          {%- for error in form.errors -%}
-            <small>{{ error }}</small>
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
+      {% if section.settings.subheading != blank %}
+        <div class="newsletter-subheading">{{ section.settings.subheading }}</div>
+      {% endif %}
       
-      {%- if form.posted_successfully? -%}
-        <div class="newsletter-success">
-          <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
+      {%- form 'customer', id: 'newsletter-form', class: 'newsletter-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-field-wrapper">
+          <div class="newsletter-field">
+            <input
+              id="NewsletterEmail"
+              type="email"
+              name="contact[email]"
+              class="newsletter-input"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              placeholder="Email address"
+              required
+            >
+            <button type="submit" class="newsletter-button" name="commit" style="background-color: {{ section.settings.button_color }};">
+              {{ section.settings.button_text }}
+            </button>
+          </div>
         </div>
-      {%- endif -%}
-    {%- endform -%}
+        
+        {%- if form.errors -%}
+          <div class="newsletter-error">
+            {%- for error in form.errors -%}
+              <small>{{ error }}</small>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+        
+        {%- if form.posted_successfully? -%}
+          <div class="newsletter-success">
+            <p>{{ 'general.newsletter_form.confirmation' | t }}</p>
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
   </div>
 </div>
 
 <style>
-  .newsletter-section {
-    padding: 60px 0;
-    text-align: center;
+  .newsletter-banner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
   }
   
   .newsletter-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 20px;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: stretch;
+  }
+  
+  .sustainability-section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  .sustainability-logo {
+    max-width: 230px;
+    margin-bottom: 20px;
+  }
+  
+  .sustainability-logo img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .sustainability-text {
+    color: white;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .learn-more-link {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  .newsletter-section {
+    width: 50%;
+    padding: 60px 40px;
+    text-align: left;
   }
   
   .newsletter-heading {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 600;
     margin: 0 0 15px;
+    color: white;
   }
   
   .newsletter-subheading {
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.5;
     margin-bottom: 25px;
+    color: white;
   }
   
   .newsletter-form {
@@ -127,10 +203,8 @@
   
   .newsletter-field {
     display: flex;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 0;
     overflow: hidden;
-    background-color: #74AA50;
   }
   
   .newsletter-input {
@@ -140,6 +214,7 @@
     font-size: 16px;
     outline: none;
     color: #333;
+    border-radius: 0;
   }
   
   .newsletter-input::placeholder {
@@ -147,35 +222,42 @@
   }
   
   .newsletter-button {
-    background-color: #333;
     color: white;
     border: none;
     padding: 12px 25px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 0;
   }
   
   .newsletter-button:hover {
-    background-color: #555;
+    opacity: 0.9;
   }
   
   .newsletter-error {
-    color: #d9534f;
+    color: #ffffff;
     margin-top: 10px;
     font-size: 14px;
   }
   
   .newsletter-success {
-    color: #5cb85c;
+    color: #ffffff;
     margin-top: 10px;
     font-size: 14px;
   }
   
-  @media screen and (max-width: 749px) {
+  @media screen and (max-width: 768px) {
+    .newsletter-container {
+      flex-direction: column;
+    }
+    
+    .sustainability-section,
     .newsletter-section {
-      padding: 40px 0;
+      width: 100%;
+      padding: 30px 20px;
     }
     
     .newsletter-heading {
@@ -188,12 +270,11 @@
     
     .newsletter-input {
       width: 100%;
-      border-bottom: 1px solid #ddd;
+      margin-bottom: 10px;
     }
     
     .newsletter-button {
       width: 100%;
-      padding: 12px 15px;
     }
   }
 </style> 
