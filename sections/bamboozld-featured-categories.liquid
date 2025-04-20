@@ -59,6 +59,26 @@
         }
       ],
       "default": "4"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 30
     }
   ],
   "blocks": [
@@ -152,7 +172,7 @@
 }
 {% endschema %}
 
-<div class="featured-categories-section">
+<div class="featured-categories-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
   <div class="featured-categories-container">
     
     <div class="categories-wrapper {% if section.settings.layout == 'slider' %}categories-slider{% else %}categories-grid{% endif %}" 
@@ -396,26 +416,66 @@
     
     .category-button {
       padding: 8px 20px;
-      font-size: 16px;
+      font-size: 14px;
     }
   }
   
   @media screen and (max-width: 749px) {
     .featured-categories-section {
-      padding: 40px 0;
+      padding: 30px 10px;
     }
     
     .categories-grid .categories-container {
       grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
     }
     
     .category-item {
-      flex: 0 0 calc(50% - 20px);
+      flex: 0 0 calc(50% - 15px);
     }
     
     .category-button {
       padding: 8px 15px;
-      font-size: 14px;
+      font-size: 13px;
+    }
+    
+    .category-button-container {
+      min-width: auto;
+      width: 90%;
+      padding: 10px 15px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .featured-categories-section {
+      padding: 20px 10px;
+    }
+    
+    .categories-grid .categories-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .categories-container {
+      gap: 15px;
+    }
+    
+    .category-item {
+      flex: 0 0 calc(100% - 15px);
+    }
+    
+    .category-button {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+    
+    .slider-nav {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .slider-btn svg {
+      width: 16px;
+      height: 16px;
     }
   }
 </style>

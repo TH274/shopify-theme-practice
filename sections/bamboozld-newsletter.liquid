@@ -50,6 +50,26 @@
       "id": "button_color",
       "label": "Button Color",
       "default": "#ff5d5d"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
     }
   ],
   "presets": [
@@ -60,7 +80,7 @@
 }
 {% endschema %}
 
-<div class="newsletter-banner">
+<div class="newsletter-banner" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
   <div class="newsletter-container">
     <div class="sustainability-section" style="background-color: {{ section.settings.left_background_color }};">
       <div class="sustainability-logo">
@@ -275,6 +295,37 @@
     
     .newsletter-button {
       width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .sustainability-section,
+    .newsletter-section {
+      padding: 25px 15px;
+    }
+    
+    .sustainability-logo {
+      max-width: 180px;
+    }
+    
+    .newsletter-heading {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .newsletter-subheading {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    
+    .newsletter-button {
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    
+    .newsletter-input {
+      padding: 10px;
+      font-size: 14px;
     }
   }
 </style> 

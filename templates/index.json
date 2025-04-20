@@ -311,8 +311,11 @@
         "heading": "Get an immediate 20% discount!",
         "subheading": "Subscribe and stay up to date with our latest news and products. *Offer excludes already discounted items and Bundles",
         "button_text": "Subscribe",
-        "background_color": "#f8f8f8",
-        "text_color": "#333333"
+        "logo_image": "shopify://shop_images/Heading_1_21a58618-8adc-488f-b55a-6042f50b4970-_1.png",
+        "left_background_color": "#9fc388",
+        "right_background_color": "#8ebe67",
+        "text_color": "#333333",
+        "button_color": "#ff5d5d"
       }
     }
   },

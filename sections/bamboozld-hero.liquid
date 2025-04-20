@@ -88,6 +88,26 @@
         "id": "button_label",
         "label": "t:sections.bamboozld.button_label.label",
         "default": "t:sections.bamboozld.button_label.default"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "label": "Padding top",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "label": "Padding bottom",
+        "default": 0
       }
     ],
     "presets": [
@@ -99,7 +119,7 @@
   }
 {% endschema %}
 
-<div class="hero-banner">
+<div class="hero-banner" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
   <div class="hero-inner {{ section.settings.hero_layout }}">
     <div class="hero-image">
       {% if section.settings.image %}
@@ -231,7 +251,7 @@
   }
   
   .button-container {
-    margin: 25px 130px 12px 100px; 
+    margin: 25px 0;
   }
   
   .hero-button {
@@ -260,7 +280,13 @@
     
     .hero-button {
       padding: 8px 20px;
-      font-size: 18px;
+      font-size: 14px;
+    }
+    
+    .hero-inner.fixed_width {
+      width: 100%;
+      max-width: 100%;
+      padding: 0 15px;
     }
   }
   
@@ -274,12 +300,36 @@
     }
 
     .hero-content {
-      max-width: 85%;
+      max-width: 90%;
+      padding: 0.5rem;
+    }
+    
+    .button-container {
+      margin: 15px 0;
     }
     
     .hero-button {
       padding: 8px 15px;
-      font-size: 16px;
+      font-size: 13px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .hero-image {
+      padding-bottom: 100%;
+    }
+    
+    .hero-content {
+      max-width: 95%;
+    }
+    
+    .button-container {
+      margin: 10px 0;
+    }
+    
+    .hero-button {
+      padding: 6px 12px;
+      font-size: 12px;
     }
   }
 </style>

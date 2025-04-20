@@ -272,20 +272,32 @@
   @media screen and (max-width: 991px) {
     .reviews-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
     
     .reviews-carousel {
       padding: 0 20px;
     }
+    
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
   }
   
   @media screen and (max-width: 767px) {
+    .customer-reviews-container {
+      padding: 0 15px;
+    }
+  
     .section-title {
-      font-size: 28px;
+      font-size: 24px;
+      margin-bottom: 10px;
     }
     
     .reviews-grid {
       grid-template-columns: 1fr;
+      gap: 15px;
     }
     
     .carousel-arrow {
@@ -300,6 +312,51 @@
     
     .carousel-next {
       right: 5px;
+    }
+    
+    .review-card {
+      padding: 20px 15px;
+    }
+    
+    .review-text {
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .section-title {
+      font-size: 20px;
+    }
+    
+    .rating-stars {
+      font-size: 16px;
+    }
+    
+    .reviews-count {
+      font-size: 14px;
+    }
+    
+    .review-card {
+      padding: 15px 10px;
+    }
+    
+    .review-text {
+      font-size: 14px;
+    }
+    
+    .customer-name {
+      font-size: 12px;
+    }
+    
+    .carousel-arrow {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .carousel-arrow svg {
+      width: 18px;
+      height: 18px;
     }
   }
 </style>

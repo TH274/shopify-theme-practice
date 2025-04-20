@@ -30,6 +30,26 @@
         }
       ],
       "default": "text-black"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
     }
   ],
   "blocks": [
@@ -100,7 +120,7 @@
 }
 {% endschema %}
 
-<div class="why-choose-section {{ section.settings.text_color }}" {% if section.settings.image %}style="background-image: url('{{ section.settings.image | img_url: 'master' }}');"{% endif %}>
+<div class="why-choose-section {{ section.settings.text_color }}" {% if section.settings.image %}style="background-image: url('{{ section.settings.image | img_url: 'master' }}'); padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"{% else %}style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;"{% endif %}>
   <div class="why-choose-container">
     <h2 class="section-title">{{ section.settings.title }}</h2>
     
@@ -233,12 +253,53 @@
   }
   
   @media screen and (max-width: 768px) {
+    .why-choose-section {
+      padding: 40px 20px;
+    }
+  
     .features-container {
       flex-direction: column;
+      gap: 25px;
     }
     
     .feature-card {
       flex: 1 1 100%;
+      padding: 15px 10px;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .why-choose-section {
+      padding: 30px 15px;
+    }
+    
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .feature-icon img {
+      width: 70px;
+      height: 70px;
+    }
+    
+    .feature-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    
+    .feature-description {
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    
+    .feature-card {
+      padding: 10px 5px;
     }
   }
 </style> 

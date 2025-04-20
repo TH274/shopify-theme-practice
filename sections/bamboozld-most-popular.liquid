@@ -52,6 +52,26 @@
       "id": "show_wishlist",
       "label": "t:sections.bamboozld.checkbox.option_4.label",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
     }
   ],
   "presets": [
@@ -63,7 +83,7 @@
 }
 {% endschema %}
 
-<div class="most-popular-section">
+<div class="most-popular-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;">
   <div class="most-popular-container">
     <h2 class="section-title">{{ section.settings.title }}</h2>
   </div>
@@ -346,38 +366,92 @@
   @media screen and (max-width: 990px) {
     .most-popular-grid .product-container {
       grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
     }
     
     .product-card {
-      flex: 0 0 calc(33.33% - 20px);
+      flex: 0 0 calc(33.33% - 15px);
+      min-width: 220px;
+    }
+    
+    .most-popular-section {
+      padding: 50px 15px;
     }
   }
   
   @media screen and (max-width: 768px) {
     .most-popular-section {
-      padding: 40px 0;
+      padding: 40px 15px;
     }
     
     .section-title {
-      font-size: 28px;
+      font-size: 24px;
+      margin-bottom: 30px;
     }
     
     .most-popular-grid .product-container {
       grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
     }
     
     .product-card {
-      flex: 0 0 calc(50% - 20px);
+      flex: 0 0 calc(50% - 15px);
+      min-width: 180px;
+      padding-bottom: 15px;
+    }
+    
+    .product-title {
+      font-size: 14px;
+    }
+    
+    .product-price {
+      font-size: 14px;
+    }
+    
+    .slider-nav {
+      height: 36px;
+      width: 36px;
     }
   }
   
   @media screen and (max-width: 480px) {
+    .most-popular-section {
+      padding: 30px 10px;
+    }
+    
     .section-title {
-      font-size: 24px;
+      font-size: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .most-popular-grid .product-container {
+      grid-template-columns: repeat(1, 1fr);
     }
     
     .product-card {
-      min-width: 200px;
+      flex: 0 0 calc(100% - 15px);
+      min-width: 160px;
+    }
+    
+    .slider-nav {
+      height: 32px;
+      width: 32px;
+    }
+    
+    .slider-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .wishlist-button {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .product-card .sale-badge, 
+    .product-card .sold-out-badge {
+      font-size: 10px;
+      padding: 3px 8px;
     }
   }
 </style>
