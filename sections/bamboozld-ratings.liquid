@@ -225,6 +225,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    transition: opacity 0.5s ease, transform 0.5s ease;
   }
   
   .review-rating {
@@ -267,6 +268,22 @@
   .verified-badge img {
     height: 20px;
     width: auto;
+  }
+  
+  /* Animation classes for smooth transitions */
+  .review-card.card-entering {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  
+  .review-card.card-leaving {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  
+  .review-card.card-active {
+    opacity: 1;
+    transform: translateX(0);
   }
   
   @media screen and (max-width: 991px) {
@@ -363,17 +380,27 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    initReviewsCarousel();
+  });
+
+  // Re-initialize when Shopify section is reloaded in editor
+  document.addEventListener('shopify:section:load', function(event) {
+    if (event.detail.sectionId.includes('bamboozld-ratings')) {
+      initReviewsCarousel();
+    }
+  });
+
+  function initReviewsCarousel() {
     const reviewsContainer = document.querySelector('.reviews-grid');
     const prevBtn = document.querySelector('.carousel-prev');
     const nextBtn = document.querySelector('.carousel-next');
     
     if (!reviewsContainer || !prevBtn || !nextBtn) return;
     
-    // Variables for auto-scrolling
     let autoScrollInterval;
-    const autoScrollDelay = 3000; // 3 seconds
+    const autoScrollDelay = 3000;
+    let isAnimating = false;
     
-    // Global function for auto-scrolling that will be determined based on screen size
     let autoScrollHandler = function() {};
     let prevBtnClickHandler, nextBtnClickHandler;
     
@@ -381,16 +408,52 @@
       const windowWidth = window.innerWidth;
       const reviewCards = document.querySelectorAll('.review-card');
       
-      // Clear existing interval before setting up new handlers
       clearInterval(autoScrollInterval);
       
-      // Remove existing event listeners to prevent duplication
       prevBtn.removeEventListener('click', prevBtnClickHandler);
       nextBtn.removeEventListener('click', nextBtnClickHandler);
       
       reviewCards.forEach(card => {
         card.style.display = '';
+        card.classList.add('card-active');
       });
+      
+      // Function to animate transition between cards
+      const animateTransition = (cardsToHide, cardsToShow) => {
+        if (isAnimating) return;
+        isAnimating = true;
+        
+        // First phase: hide cards that should be hidden
+        cardsToHide.forEach(card => {
+          card.classList.remove('card-active');
+          card.classList.add('card-leaving');
+        });
+        
+        // Wait for leaving animation to complete
+        setTimeout(() => {
+          cardsToHide.forEach(card => {
+            card.style.display = 'none';
+            card.classList.remove('card-leaving');
+          });
+          
+          // Second phase: show cards that should be visible
+          cardsToShow.forEach(card => {
+            card.style.display = '';
+            card.classList.add('card-entering');
+            
+            // Trigger reflow
+            void card.offsetWidth;
+            
+            card.classList.remove('card-entering');
+            card.classList.add('card-active');
+          });
+          
+          // Animation complete
+          setTimeout(() => {
+            isAnimating = false;
+          }, 500);
+        }, 300);
+      };
       
       if (windowWidth <= 767) {
         let currentIndex = 0;
@@ -407,32 +470,41 @@
         });
         
         prevBtnClickHandler = function() {
+          if (isAnimating) return;
           resetAutoScroll();
-          currentIndex = (currentIndex - 1 + reviewCards.length) % reviewCards.length;
-          reviewsContainer.dataset.currentIndex = currentIndex;
+          const newIndex = (currentIndex - 1 + reviewCards.length) % reviewCards.length;
           
-          reviewCards.forEach((card, index) => {
-            card.style.display = index === currentIndex ? '' : 'none';
-          });
+          const cardsToHide = [reviewCards[currentIndex]];
+          const cardsToShow = [reviewCards[newIndex]];
+          
+          animateTransition(cardsToHide, cardsToShow);
+          currentIndex = newIndex;
+          reviewsContainer.dataset.currentIndex = currentIndex;
         };
         
         nextBtnClickHandler = function() {
+          if (isAnimating) return;
           resetAutoScroll();
-          currentIndex = (currentIndex + 1) % reviewCards.length;
-          reviewsContainer.dataset.currentIndex = currentIndex;
+          const newIndex = (currentIndex + 1) % reviewCards.length;
           
-          reviewCards.forEach((card, index) => {
-            card.style.display = index === currentIndex ? '' : 'none';
-          });
+          const cardsToHide = [reviewCards[currentIndex]];
+          const cardsToShow = [reviewCards[newIndex]];
+          
+          animateTransition(cardsToHide, cardsToShow);
+          currentIndex = newIndex;
+          reviewsContainer.dataset.currentIndex = currentIndex;
         };
         
         autoScrollHandler = function() {
-          currentIndex = (currentIndex + 1) % reviewCards.length;
-          reviewsContainer.dataset.currentIndex = currentIndex;
+          if (isAnimating) return;
+          const newIndex = (currentIndex + 1) % reviewCards.length;
           
-          reviewCards.forEach((card, index) => {
-            card.style.display = index === currentIndex ? '' : 'none';
-          });
+          const cardsToHide = [reviewCards[currentIndex]];
+          const cardsToShow = [reviewCards[newIndex]];
+          
+          animateTransition(cardsToHide, cardsToShow);
+          currentIndex = newIndex;
+          reviewsContainer.dataset.currentIndex = currentIndex;
         };
         
       } else if (windowWidth <= 991) {
@@ -453,35 +525,68 @@
         });
         
         prevBtnClickHandler = function() {
+          if (isAnimating) return;
           resetAutoScroll();
-          currentPairIndex = (currentPairIndex - 1 + totalPairs) % totalPairs;
-          reviewsContainer.dataset.currentPairIndex = currentPairIndex;
+          const newPairIndex = (currentPairIndex - 1 + totalPairs) % totalPairs;
+          
+          const cardsToHide = [];
+          const cardsToShow = [];
           
           reviewCards.forEach((card, index) => {
             const pairIndex = Math.floor(index / 2);
-            card.style.display = pairIndex === currentPairIndex ? '' : 'none';
+            if (pairIndex === currentPairIndex) {
+              cardsToHide.push(card);
+            } else if (pairIndex === newPairIndex) {
+              cardsToShow.push(card);
+            }
           });
+          
+          animateTransition(cardsToHide, cardsToShow);
+          currentPairIndex = newPairIndex;
+          reviewsContainer.dataset.currentPairIndex = currentPairIndex;
         };
         
         nextBtnClickHandler = function() {
+          if (isAnimating) return;
           resetAutoScroll();
-          currentPairIndex = (currentPairIndex + 1) % totalPairs;
-          reviewsContainer.dataset.currentPairIndex = currentPairIndex;
+          const newPairIndex = (currentPairIndex + 1) % totalPairs;
+          
+          const cardsToHide = [];
+          const cardsToShow = [];
           
           reviewCards.forEach((card, index) => {
             const pairIndex = Math.floor(index / 2);
-            card.style.display = pairIndex === currentPairIndex ? '' : 'none';
+            if (pairIndex === currentPairIndex) {
+              cardsToHide.push(card);
+            } else if (pairIndex === newPairIndex) {
+              cardsToShow.push(card);
+            }
           });
+          
+          animateTransition(cardsToHide, cardsToShow);
+          currentPairIndex = newPairIndex;
+          reviewsContainer.dataset.currentPairIndex = currentPairIndex;
         };
         
         autoScrollHandler = function() {
-          currentPairIndex = (currentPairIndex + 1) % totalPairs;
-          reviewsContainer.dataset.currentPairIndex = currentPairIndex;
+          if (isAnimating) return;
+          const newPairIndex = (currentPairIndex + 1) % totalPairs;
+          
+          const cardsToHide = [];
+          const cardsToShow = [];
           
           reviewCards.forEach((card, index) => {
             const pairIndex = Math.floor(index / 2);
-            card.style.display = pairIndex === currentPairIndex ? '' : 'none';
+            if (pairIndex === currentPairIndex) {
+              cardsToHide.push(card);
+            } else if (pairIndex === newPairIndex) {
+              cardsToShow.push(card);
+            }
           });
+          
+          animateTransition(cardsToHide, cardsToShow);
+          currentPairIndex = newPairIndex;
+          reviewsContainer.dataset.currentPairIndex = currentPairIndex;
         };
         
       } else {
@@ -502,43 +607,74 @@
         });
         
         prevBtnClickHandler = function() {
+          if (isAnimating) return;
           resetAutoScroll();
-          currentTrioIndex = (currentTrioIndex - 1 + totalTrios) % totalTrios;
-          reviewsContainer.dataset.currentTrioIndex = currentTrioIndex;
+          const newTrioIndex = (currentTrioIndex - 1 + totalTrios) % totalTrios;
+          
+          const cardsToHide = [];
+          const cardsToShow = [];
           
           reviewCards.forEach((card, index) => {
             const trioIndex = Math.floor(index / 3);
-            card.style.display = trioIndex === currentTrioIndex ? '' : 'none';
+            if (trioIndex === currentTrioIndex) {
+              cardsToHide.push(card);
+            } else if (trioIndex === newTrioIndex) {
+              cardsToShow.push(card);
+            }
           });
+          
+          animateTransition(cardsToHide, cardsToShow);
+          currentTrioIndex = newTrioIndex;
+          reviewsContainer.dataset.currentTrioIndex = currentTrioIndex;
         };
         
         nextBtnClickHandler = function() {
+          if (isAnimating) return;
           resetAutoScroll();
-          currentTrioIndex = (currentTrioIndex + 1) % totalTrios;
-          reviewsContainer.dataset.currentTrioIndex = currentTrioIndex;
+          const newTrioIndex = (currentTrioIndex + 1) % totalTrios;
+          
+          const cardsToHide = [];
+          const cardsToShow = [];
           
           reviewCards.forEach((card, index) => {
             const trioIndex = Math.floor(index / 3);
-            card.style.display = trioIndex === currentTrioIndex ? '' : 'none';
+            if (trioIndex === currentTrioIndex) {
+              cardsToHide.push(card);
+            } else if (trioIndex === newTrioIndex) {
+              cardsToShow.push(card);
+            }
           });
+          
+          animateTransition(cardsToHide, cardsToShow);
+          currentTrioIndex = newTrioIndex;
+          reviewsContainer.dataset.currentTrioIndex = currentTrioIndex;
         };
         
         autoScrollHandler = function() {
-          currentTrioIndex = (currentTrioIndex + 1) % totalTrios;
-          reviewsContainer.dataset.currentTrioIndex = currentTrioIndex;
+          if (isAnimating) return;
+          const newTrioIndex = (currentTrioIndex + 1) % totalTrios;
+          
+          const cardsToHide = [];
+          const cardsToShow = [];
           
           reviewCards.forEach((card, index) => {
             const trioIndex = Math.floor(index / 3);
-            card.style.display = trioIndex === currentTrioIndex ? '' : 'none';
+            if (trioIndex === currentTrioIndex) {
+              cardsToHide.push(card);
+            } else if (trioIndex === newTrioIndex) {
+              cardsToShow.push(card);
+            }
           });
+          
+          animateTransition(cardsToHide, cardsToShow);
+          currentTrioIndex = newTrioIndex;
+          reviewsContainer.dataset.currentTrioIndex = currentTrioIndex;
         };
       }
       
-      // Add event listeners after they've been defined
       prevBtn.addEventListener('click', prevBtnClickHandler);
       nextBtn.addEventListener('click', nextBtnClickHandler);
       
-      // Setup auto-scrolling
       setupAutoScroll();
     };
     
@@ -642,5 +778,10 @@
       if (autoScrollInterval) clearInterval(autoScrollInterval);
       autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
     });
-  });
+  }
+
+  // Check if we're in Shopify's editor and initialize immediately
+  if (Shopify && Shopify.designMode) {
+    initReviewsCarousel();
+  }
 </script> 
