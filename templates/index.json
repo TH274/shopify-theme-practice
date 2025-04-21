@@ -17,7 +17,9 @@
         "hero_layout": "fixed_width",
         "button_link": "shopify://collections",
         "button_position": "bottom-right",
-        "button_label": "WINTER COLLECTION"
+        "button_label": "WINTER COLLECTION",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "bamboozld_featured_categories_MN8YAd": {
@@ -95,7 +97,9 @@
       "settings": {
         "layout": "grid",
         "size": "landscape",
-        "columns_desktop": "2"
+        "columns_desktop": "2",
+        "padding_top": 30,
+        "padding_bottom": 30
       }
     },
     "bamboozld_new_arrival_fgVrEz": {
@@ -120,7 +124,9 @@
         "hero_layout": "full_width",
         "button_link": "shopify://collections",
         "button_position": "center-center",
-        "button_label": "SHOP THE LOOKS"
+        "button_label": "SHOP THE LOOKS",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "bamboozld_ratings_KNfUQ4": {
@@ -205,7 +211,9 @@
         "products_to_show": 12,
         "layout": "slider",
         "show_vendor": false,
-        "show_wishlist": true
+        "show_wishlist": true,
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "bamboozld_why_choose_dWBcyU": {
@@ -250,7 +258,9 @@
       "settings": {
         "title": "Why Choose Bamboo?",
         "image": "shopify://shop_images/desktop-bg.webp",
-        "text_color": "text-white"
+        "text_color": "text-white",
+        "padding_top": 60,
+        "padding_bottom": 60
       }
     },
     "bamboozld_featured_categories_jkBN4x": {
@@ -295,14 +305,48 @@
       "settings": {
         "layout": "grid",
         "size": "portrait",
-        "columns_desktop": "3"
+        "columns_desktop": "3",
+        "padding_top": 30,
+        "padding_bottom": 30
       }
     },
     "bamboozld_social_media_jQzEY7": {
       "type": "bamboozld-social-media",
       "settings": {
         "instagram_link": "shopify://blogs/news",
-        "button_label": "LET'S GET SOCIAL ! FOLLOW US"
+        "button_label": "LET'S GET SOCIAL ! FOLLOW US",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "rich_text_Tmw3Gj": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_eCwVVK": {
+          "type": "heading",
+          "settings": {
+            "heading": "Acknowledgement Of Country",
+            "heading_size": "h1"
+          }
+        },
+        "text_tWJkAN": {
+          "type": "text",
+          "settings": {
+            "text": "<p><br/>Bamboozld acknowledges the Traditional Owners and Custodians of Country <br/>throughout Australia and acknowledge their continuing connection to <br/>land, waters and community. We acknowledge the rights of First Nations <br/>people to their traditional knowledge and cultural expressions, and <br/>commit to working collaboratively and ethically to increase First <br/>Nations inclusion in our business and the Australian fashion and <br/>lifestyle industry. We pay our respects to thier Elders past, present <br/>and emerging.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_eCwVVK",
+        "text_tWJkAN"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 20,
+        "padding_bottom": 0
       }
     },
     "bamboozld_newsletter_q3z8tW": {
@@ -315,7 +359,9 @@
         "left_background_color": "#9fc388",
         "right_background_color": "#8ebe67",
         "text_color": "#333333",
-        "button_color": "#ff5d5d"
+        "button_color": "#ff5d5d",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
@@ -329,6 +375,7 @@
     "bamboozld_why_choose_dWBcyU",
     "bamboozld_featured_categories_jkBN4x",
     "bamboozld_social_media_jQzEY7",
+    "rich_text_Tmw3Gj",
     "bamboozld_newsletter_q3z8tW"
   ]
 }

@@ -1,0 +1,147 @@
+.bamboozld-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bamboozld-text.bamboozld-text--full-width {
+  /* Remove the padding: 0; declaration to allow the section padding to work */
+  /* padding: 0; */
+}
+
+.bamboozld-text__wrapper {
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.bamboozld-text__blocks {
+  margin: 0 auto;
+}
+
+.bamboozld-text__heading {
+  margin: 0;
+  margin-bottom: 2rem;
+}
+
+.bamboozld-text__text {
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.bamboozld-text__text p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bamboozld-text__button {
+  margin-top: 3rem;
+}
+
+.bamboozld-text__buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .bamboozld-text__text {
+    font-size: 1.6rem;
+  }
+}
+
+.bamboozld-text__buttons--multiple.center {
+  justify-content: center;
+}
+
+.bamboozld-text__buttons--multiple.right {
+  justify-content: flex-end;
+}
+
+.bamboozld-text__blocks.left .bamboozld-text__buttons--multiple {
+  justify-content: flex-start;
+}
+
+.bamboozld-text__blocks.center .bamboozld-text__buttons {
+  justify-content: center;
+}
+
+.bamboozld-text__blocks.right .bamboozld-text__buttons {
+  justify-content: flex-end;
+}
+
+.bamboozld-text__blocks > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bamboozld-text__blocks > *:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.bamboozld-text__blocks > *:first-child {
+  margin-top: 0;
+}
+
+.bamboozld-text__blocks > *:last-child {
+  margin-bottom: 0;
+}
+
+.bamboozld-text__blocks.left {
+  text-align: left;
+}
+
+.bamboozld-text__blocks.center {
+  text-align: center;
+}
+
+.bamboozld-text__blocks.right {
+  text-align: right;
+}
+
+@media screen and (min-width: 750px) {
+  .bamboozld-text__blocks {
+    max-width: 90%;
+  }
+  
+  .bamboozld-text__blocks > *:not(:first-child) {
+    margin-top: 3rem;
+  }
+}
+
+.bamboozld-text .rte a {
+  text-underline-offset: 0.3rem;
+}
+
+.bamboozld-text__caption {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.bamboozld-text__caption a {
+  display: inline-block;
+  position: relative;
+  color: currentColor;
+  text-decoration: none;
+}
+
+.bamboozld-text__caption a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 0.1rem;
+  background-color: currentColor;
+  left: 0;
+  bottom: -0.1rem;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform var(--duration-default) ease;
+}
+
+.bamboozld-text__caption a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+} 
