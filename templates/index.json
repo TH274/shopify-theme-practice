@@ -319,34 +319,33 @@
         "padding_bottom": 80
       }
     },
-    "rich_text_Tmw3Gj": {
-      "type": "rich-text",
+    "bamboozld_text_YxYrFz": {
+      "type": "bamboozld-text",
       "blocks": {
-        "heading_eCwVVK": {
+        "heading_QkXjGF": {
           "type": "heading",
           "settings": {
             "heading": "Acknowledgement Of Country",
             "heading_size": "h1"
           }
         },
-        "text_tWJkAN": {
+        "text_XfYVXj": {
           "type": "text",
           "settings": {
-            "text": "<p><br/>Bamboozld acknowledges the Traditional Owners and Custodians of Country <br/>throughout Australia and acknowledge their continuing connection to <br/>land, waters and community. We acknowledge the rights of First Nations <br/>people to their traditional knowledge and cultural expressions, and <br/>commit to working collaboratively and ethically to increase First <br/>Nations inclusion in our business and the Australian fashion and <br/>lifestyle industry. We pay our respects to thier Elders past, present <br/>and emerging.<br/><br/></p>"
+            "text": "<p>Bamboozld acknowledges the Traditional Owners and Custodians of Country throughout Australia and acknowledge their continuing connection to land, waters and community. We acknowledge the rights of First Nations people to their traditional knowledge and cultural expressions, and commit to working collaboratively and ethically to increase First Nations inclusion in our business and the Australian fashion and lifestyle industry. We pay our respects to thier Elders past, present and emerging.</p>"
           }
         }
       },
       "block_order": [
-        "heading_eCwVVK",
-        "text_tWJkAN"
+        "heading_QkXjGF",
+        "text_XfYVXj"
       ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
         "color_scheme": "",
-        "full_width": true,
-        "padding_top": 20,
-        "padding_bottom": 0
+        "padding_top": 28,
+        "padding_bottom": 40
       }
     },
     "bamboozld_newsletter_q3z8tW": {
@@ -375,7 +374,7 @@
     "bamboozld_why_choose_dWBcyU",
     "bamboozld_featured_categories_jkBN4x",
     "bamboozld_social_media_jQzEY7",
-    "rich_text_Tmw3Gj",
+    "bamboozld_text_YxYrFz",
     "bamboozld_newsletter_q3z8tW"
   ]
 }
