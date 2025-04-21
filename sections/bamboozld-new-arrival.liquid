@@ -197,7 +197,7 @@
   .section-header-arrival {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 75px;
+    padding: 0 70px;
   }
   
   .new-arrivals-slider {
@@ -598,7 +598,7 @@
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
       
       if (scrollLeft <= 0) {
-        prevBtn.parentElement.style.opacity = '0.5';
+        prevBtn.parentElement.style.opacity = '0';
         prevBtn.style.pointerEvents = 'none';
       } else {
         prevBtn.parentElement.style.opacity = '1';
@@ -606,7 +606,7 @@
       }
       
       if (scrollLeft >= maxScrollLeft - 5) {
-        nextBtn.parentElement.style.opacity = '0.5';
+        nextBtn.parentElement.style.opacity = '0';
         nextBtn.style.pointerEvents = 'none';
       } else {
         nextBtn.parentElement.style.opacity = '1';
