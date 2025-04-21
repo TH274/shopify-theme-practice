@@ -9,23 +9,23 @@
         "id": "image",
         "label": "t:sections.bamboozld.image"
       },
-      {
-        "type": "select",
-        "id": "image_position",
-        "label": "t:sections.bamboozld-hero.settings.image_position.label",
-        "options": [
-          {
-            "label": "t:sections.bamboozld-hero.settings.image_position.options.top",
-            "value": "top"
-          }, {
-            "label": "t:sections.bamboozld-hero.settings.image_position.options.center",
-            "value": "center"
-          }, {
-            "label": "t:sections.bamboozld-hero.settings.image_position.options.bottom",
-            "value": "bottom"
-          }
-        ]
-      },
+      // {
+      //   "type": "select",
+      //   "id": "image_position",
+      //   "label": "t:sections.bamboozld-hero.settings.image_position.label",
+      //   "options": [
+      //     {
+      //       "label": "t:sections.bamboozld-hero.settings.image_position.options.top",
+      //       "value": "top"
+      //     }, {
+      //       "label": "t:sections.bamboozld-hero.settings.image_position.options.center",
+      //       "value": "center"
+      //     }, {
+      //       "label": "t:sections.bamboozld-hero.settings.image_position.options.bottom",
+      //       "value": "bottom"
+      //     }
+      //   ]
+      // },
       {
         "type": "select",
         "id": "hero_layout",
@@ -182,7 +182,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center {{ section.settings.image_position }};
+    object-position: {{ section.settings.image_position }};
     display: block;
     will-change: transform;
   }

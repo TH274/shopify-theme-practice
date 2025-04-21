@@ -383,7 +383,6 @@
     initReviewsCarousel();
   });
 
-  // Re-initialize when Shopify section is reloaded in editor
   document.addEventListener('shopify:section:load', function(event) {
     if (event.detail.sectionId.includes('bamboozld-ratings')) {
       initReviewsCarousel();
@@ -441,7 +440,6 @@
             card.style.display = '';
             card.classList.add('card-entering');
             
-            // Trigger reflow
             void card.offsetWidth;
             
             card.classList.remove('card-entering');
@@ -678,21 +676,16 @@
       setupAutoScroll();
     };
     
-    // Helper functions for auto-scrolling
     function setupAutoScroll() {
-      // Clear any existing interval
       clearInterval(autoScrollInterval);
-      // Set new interval
       autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
     }
     
     function resetAutoScroll() {
-      // Reset the interval when user manually navigates
       clearInterval(autoScrollInterval);
       autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
     }
     
-    // Make reviews container horizontally scrollable on touch devices
     setupDragToScroll(reviewsContainer);
     
     function setupDragToScroll(element) {
@@ -700,33 +693,26 @@
       let startX;
       let scrollLeft;
       
-      element.style.cursor = 'grab';
       
       element.addEventListener('mousedown', (e) => {
         isDown = true;
-        element.style.cursor = 'grabbing';
         startX = e.pageX - element.offsetLeft;
         scrollLeft = element.scrollLeft;
         e.preventDefault();
         
-        // Pause auto-scroll when user interacts
         clearInterval(autoScrollInterval);
       });
       
       element.addEventListener('mouseleave', () => {
         isDown = false;
-        element.style.cursor = 'grab';
         
-        // Resume auto-scroll
         if (autoScrollInterval) clearInterval(autoScrollInterval);
         autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
       });
       
       element.addEventListener('mouseup', () => {
         isDown = false;
-        element.style.cursor = 'grab';
         
-        // Resume auto-scroll
         if (autoScrollInterval) clearInterval(autoScrollInterval);
         autoScrollInterval = setInterval(autoScrollHandler, autoScrollDelay);
       });
@@ -744,7 +730,6 @@
         startX = e.touches[0].pageX - element.offsetLeft;
         scrollLeft = element.scrollLeft;
         
-        // Pause auto-scroll when user interacts
         clearInterval(autoScrollInterval);
       }, { passive: true });
       
@@ -780,7 +765,6 @@
     });
   }
 
-  // Check if we're in Shopify's editor and initialize immediately
   if (Shopify && Shopify.designMode) {
     initReviewsCarousel();
   }
