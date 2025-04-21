@@ -1,25 +1,5 @@
 {{ 'section-bamboozld-text.css' | asset_url | stylesheet_tag }}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
-  .bamboozld-text__wrapper {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-{%- endstyle -%}
-
 <div class="isolate">
   <div class="bamboozld-text content-container color-{{ section.settings.color_scheme }} gradient bamboozld-text--full-width content-container--full-width section-{{ section.id }}-padding">
     <div class="bamboozld-text__wrapper bamboozld-text__wrapper--{{ section.settings.desktop_content_position }} page-width">
@@ -350,3 +330,23 @@
   ]
 }
 {% endschema %} 
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .bamboozld-text__wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+{%- endstyle -%}

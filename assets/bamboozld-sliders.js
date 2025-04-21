@@ -1,25 +1,14 @@
-/**
- * Bamboozld Sliders
- * JavaScript for handling product sliders (Most Popular and New Arrivals)
- */
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize all sliders
   initSliders();
   
-  // Re-initialize on window resize with debounce
   window.addEventListener('resize', debounce(function() {
     initSliders();
   }, 250));
-  
-  /**
-   * Initialize all slider components
-   */
+
   function initSliders() {
-    // Most Popular sliders
     initSliderType('.most-popular-slider:not(.most-popular-grid)', '.product-container', '.product-card');
     
-    // New Arrivals sliders
     initSliderType('.new-arrivals-slider:not(.new-arrivals-grid)', '.new-arrival-products', '.new-arrival-product-card');
   }
   
@@ -95,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     element.addEventListener('mousedown', (e) => {
       isDown = true;
-      element.style.cursor = 'grabbing';
       startX = e.pageX - element.offsetLeft;
       scrollLeft = element.scrollLeft;
       e.preventDefault();
@@ -104,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
     element.addEventListener('mouseleave', () => {
       isDown = false;
       isDragging = false;
-      element.style.cursor = 'grab';
     });
 
     element.addEventListener('mouseup', (e) => {
@@ -126,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       isDown = false;
       isDragging = false;
-      element.style.cursor = 'grab';
     });
 
     element.addEventListener('mousemove', (e) => {
@@ -141,8 +127,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       element.scrollLeft = scrollLeft - walk;
     });
-    
-    element.style.cursor = 'grab';
     
     // Touch events for mobile
     element.addEventListener('touchstart', (e) => {
