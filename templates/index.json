@@ -70,7 +70,7 @@
           "settings": {
             "image": "shopify://shop_images/Untitled_design_-_2025-03-13T193246.093.webp",
             "link": "shopify://collections",
-            "button_label": "MEN'S JACKET",
+            "button_label": "MEN'S UNDERWEAR",
             "button_position": "bottom-right",
             "show_overlay_text": true
           }
@@ -80,7 +80,7 @@
           "settings": {
             "image": "shopify://shop_images/Untitled_design_-_2025-03-13T192637.178.webp",
             "link": "shopify://collections",
-            "button_label": "WOMEN'S JACKET",
+            "button_label": "WOMEN'S UNDERWEAR",
             "button_position": "bottom-right",
             "show_overlay_text": true
           }
