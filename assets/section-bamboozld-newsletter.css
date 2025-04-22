@@ -1,0 +1,178 @@
+.newsletter-banner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .newsletter-container {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+  }
+  
+  .sustainability-section {
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 40px;
+  }
+  
+  .sustainability-logo {
+    max-width: 230px;
+    margin-bottom: 20px;
+  }
+  
+  .sustainability-text {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  
+  .learn-more-link {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  .newsletter-section {
+    width: 50%;
+    padding: 60px 40px;
+    text-align: left;
+  }
+  
+  .newsletter-heading {
+    font-size: 32px;
+    font-weight: 600;
+    margin: 0 0 15px;
+    color: white;
+  }
+  
+  .newsletter-subheading {
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: white;
+  }
+  
+  .newsletter-form {
+    width: 100%;
+  }
+  
+  .newsletter-field-wrapper {
+    margin-bottom: 15px;
+  }
+  
+  .newsletter-field {
+    display: flex;
+    border-radius: 0;
+    overflow: hidden;
+  }
+  
+  .newsletter-input {
+    flex: 1;
+    border: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    outline: none;
+    color: #333;
+    border-radius: 0;
+  }
+  
+  .newsletter-input::placeholder {
+    color: #999;
+  }
+  
+  .newsletter-button {
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 0;
+  }
+  
+  .newsletter-button:hover {
+    opacity: 0.9;
+  }
+  
+  .newsletter-error {
+    color: #ffffff;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .newsletter-success {
+    color: #ffffff;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .newsletter-container {
+      flex-direction: column;
+    }
+    
+    .sustainability-section,
+    .newsletter-section {
+      width: 100%;
+      padding: 30px 20px;
+    }
+    
+    .newsletter-heading {
+      font-size: 24px;
+    }
+    
+    .newsletter-field {
+      flex-direction: column;
+    }
+    
+    .newsletter-input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    .newsletter-button {
+      width: 100%;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .sustainability-section,
+    .newsletter-section {
+      padding: 25px 15px;
+    }
+    
+    .sustainability-logo {
+      max-width: 180px;
+    }
+    
+    .newsletter-heading {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    
+    .newsletter-subheading {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    
+    .newsletter-button {
+      padding: 10px 15px;
+      font-size: 14px;
+    }
+    
+    .newsletter-input {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }

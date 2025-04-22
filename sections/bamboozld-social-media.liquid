@@ -43,6 +43,8 @@
   }
 {% endschema %}
 
+{{ 'section-bamboozld-social-media.css' | asset_url | stylesheet_tag }}
+
 <div class="social-media-section" style="padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; background-color: #E6E6E6;">
   <div class="social-media-container">
     <div class="section-header-social">
@@ -58,54 +60,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  .social-media-section {
-    padding: 0;
-    background-color: #E6E6E6;
-  }
-
-  .social-media-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  .section-header-social {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-
-  .social-link {
-    font-family: "Montserrat", sans-serif;
-    display: inline-block;
-    background-color: #f6455f;
-    color: #fff;
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 14px 51px;
-    letter-spacing: 1px;
-  }
-
-  .social-link:hover {
-    background-color: #e33b53;
-  }
-
-  @media screen and (max-width: 749px) {
-    .social-link {
-      font-size: 14px;
-      padding: 12px 40px;
-    }
-  }
-  
-  @media screen and (max-width: 480px) {
-    .social-link {
-      font-size: 13px;
-      padding: 10px 30px;
-      width: 80%;
-      max-width: 250px;
-    }
-  }
-</style>

@@ -1,0 +1,221 @@
+.customer-reviews-section {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .customer-reviews-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .section-header-reviews {
+    text-align: center;
+  }
+  
+  .reviews-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .rating-stars {
+    font-size: 18px;
+    color: #FF9E1B;
+  }
+  
+  .reviews-count {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .reviews-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .carousel-arrow {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+    z-index: 2;
+  }
+  
+  .carousel-arrow:hover {
+    color: #333;
+  }
+  
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+  }
+  
+  .review-card {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .review-rating {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #FF9E1B;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .review-text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    flex-grow: 1;
+    margin: 0 0 20px;
+    text-align: center;
+  }
+  
+  .review-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+  .customer-name {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .verified-badge {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .verified-badge img {
+    height: 20px;
+    width: auto;
+  }
+  
+  /* Animation classes for smooth transitions */
+  .review-card.card-entering {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  
+  .review-card.card-leaving {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  
+  .review-card.card-active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  @media screen and (max-width: 991px) {
+    .reviews-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .reviews-carousel {
+      padding: 0 20px;
+    }
+    
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 767px) {
+    .customer-reviews-container {
+      padding: 0 15px;
+    }
+  
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .reviews-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    
+    .carousel-arrow {
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+    }
+    
+    .carousel-prev {
+      left: 5px;
+    }
+    
+    .carousel-next {
+      right: 5px;
+    }
+    
+    .review-card {
+      padding: 20px 15px;
+    }
+    
+    .review-text {
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .section-title {
+      font-size: 20px;
+    }
+    
+    .rating-stars {
+      font-size: 16px;
+    }
+    
+    .reviews-count {
+      font-size: 14px;
+    }
+    
+    .review-card {
+      padding: 15px 10px;
+    }
+    
+    .review-text {
+      font-size: 14px;
+    }
+    
+    .customer-name {
+      font-size: 12px;
+    }
+    
+    .carousel-arrow {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .carousel-arrow svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
